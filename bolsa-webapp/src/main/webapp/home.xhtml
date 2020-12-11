@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:metadata>
+	<f:viewAction action="#{layoutManagedBean.redirigirDefaultFormSiProcede}" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+			<b:column col-sm="12">
+				<h:form id="loginForm" styleClass="panel">
+				
+					<div class="panel__cabecera">
+						Bienvenido a la aplicación #{msg['app.cabecera.enlace']}
+					</div>
+					
+					<p>Los requisitos imprescindibles para poder acceder a la aplicación son:</p>
+					
+					<ul>
+						<li>Ser un profesional autorizado por el <b>SMS</b>.</li>
+						<li>Estar registrado como usuario con permiso de acceso a la aplicación en
+						 el Control de Accesos del SMS.</li>
+					</ul>
+					
+					<p>El sistema conservará el rastro de la identidad de las personas que accedan
+					 y de las características de la información que consulten. Este rastro será
+					 auditado de forma periódica. Al margen de los elementos de seguridad
+					 implantados, serán perseguidos legalmente quienes accedan a información
+					 sobre la salud de las personas, si dicho acceso se hace sin contar con la
+					 autorización debida ni tener justificaciones legales legítimas para hacerlo.
+					</p>
+			
+				</h:form>
+			
+			</b:column>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

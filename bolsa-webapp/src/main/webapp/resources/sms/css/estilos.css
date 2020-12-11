@@ -1,0 +1,91 @@
+@charset "ISO-8859-1";
+
+/***************
+DETALLES ITEM MERITOS
+****************/
+
+.pdf-dialogo{
+    top: 1vh!important;
+    height: 98vh!important;
+}
+
+#pdf > div.ui-dialog-content.ui-widget-content {
+    max-height: unset!important;
+}
+
+#aportaciones-meritos-form\:panelInformacionAportacionMeritos4_content :nth-child(1) {
+    
+    display: flex!important;
+    justify-content: center!important;
+}
+
+
+/***************
+****************/
+
+.ui-datatable-empty-message{
+	text-align: center;
+}
+
+.ui-widget-header, .ui-widget-content {
+    border:none;
+}
+
+td.descripcion-arbol {
+    text-align:left;
+    white-space: normal !important;
+}
+
+.ui-button-icon-left {
+    left: .5em !important;
+    margin-left: 0px !important;
+    margin-top: -8px !important;
+}
+
+.ui-datatable thead th {
+    background: #fff !important;
+    font-family: Rajdhani;
+    font-size: 14px;
+    border: solid 1px #d4d4d9 !important;
+    border-left: none !important;
+    border-right: none !important;
+    padding: 15px 10px;
+    color: #4a4a4a !important;
+    text-shadow: none !important;
+    position: relative;
+}
+
+.ui-treetable thead th {
+    background: #fff !important;
+    
+    border: solid 1px #d4d4d9 !important;
+    border-left: none !important;
+    border-right: none !important;
+
+    color: #4a4a4a !important;
+    text-shadow: none !important;
+    position: relative;
+}
+
+.ui-treetable tbody td {
+    border: solid 1px #d4d4d9;
+    border-left: none;
+    border-right: none;
+    text-shadow: none;
+}
+
+.ui-treetable .ui-treetable-data tr.ui-state-highlight {
+    background: #d4e5f1;
+    color: #4a4a4a;
+    border-color: #d4d4d9;
+}
+
+
+.ui-treetable .ui-treetable-data tr.ui-state-hover {
+    background: #d4e5f1;
+}
+.ui-treetable .ui-treetable-data tr.ui-state-hover {
+    border-color: inherit;
+    font-weight: inherit;
+    cursor: pointer;
+}

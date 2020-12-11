@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:metadata>
+	<f:viewAction action="#{formController.init}" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+	<meta http-equiv="Cache-Control"
+		content="no-store,no-cache,must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:param name="estoyEnForms" value="true" />
+		<ui:define name="body">
+			<b:column col-sm="12">
+				<style type="text/css">
+body {
+	background-image: none;
+}
+			</style>
+<!-- 					src="https://www-pre.sms.carm.es/ca_desa/consultarProcesos.do?aplicConsulta=FAC&contexto=bolsa" -->
+<!-- /ca_desa/consultarProcesos.do?aplicConsulta=FAC -->
+			<iframe name="contenido"
+					src="https://www-pre.sms.carm.es/ca_desa/consultarProcesos.do?aplicConsulta=FAC"
+					width="100%" height="600px" frameborder="0" marginwidth="0"
+					marginheight="0" scrolling="auto"> </iframe>
+			</b:column>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

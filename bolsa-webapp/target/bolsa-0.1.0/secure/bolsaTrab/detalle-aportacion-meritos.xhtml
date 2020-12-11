@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />	
+	<style>
+		object {height: 97vh!important;}
+	</style>
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">	
+		<ui:define name="body">
+			<h:form id="aportaciones-meritos-form"
+				onkeypress="if (event.keyCode == 13) { return false; }">
+				<h:panelGroup>
+					<h4 style="text-align: center;">Información sobre la
+						aportación de méritos</h4>
+					<p:panelGrid columns="2" layout="grid"
+						id="informacionBolsaConvocatoria"
+						style="margin-left: 33%;margin-right: 33%;">
+
+						<p:outputLabel style="margin-left:10%"
+							value="#{msg['es.sms.aportacion.meritos.filtro.bolsa']}" />
+						<p:inputText id="datosBolsa-input" style="width:100%;"
+							value="#{detalleAportacionMeritosBean.bolsaTrabSeleccionada.codigo} - #{detalleAportacionMeritosBean.bolsaTrabSeleccionada.descripcionCorta} "
+							title="Identificador" readonly="true" />
+
+						<p:outputLabel style="margin-left:10%"
+							value="#{msg['es.sms.aportacion.meritos.filtro.convocatoria']}" />
+						<p:inputText id="datosConvocatoria-input" style="width:100%;"
+							value="#{detalleAportacionMeritosBean.convocatoriaSeleccionada.id} - #{detalleAportacionMeritosBean.convocatoriaSeleccionada.denominacion}"
+							title="Identificador" readonly="true" />
+
+					</p:panelGrid>
+					
+					<h4 style="text-align: center; margin-top: 2%">Datos de la
+						aportación de méritos</h4>
+					<p:panelGrid columns="1" layout="grid"
+						id="informacionAportacionMeritos"
+						style="margin-left: 20%;margin-right: 20%;">
+						<p:panelGrid columns="6" layout="grid"
+							id="panelInformacionAportacionMeritos1"
+							columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2,ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-3">
+							<p:outputLabel style="margin-left:10%"
+								value="#{msg['es.sms.aportacion.meritos.codigo']}" />
+							<p:inputText
+								value="#{detalleAportacionMeritosBean.aportacionMeritos.codigoAportacionMeritos}"
+								readonly="true" />
+
+							<p:outputLabel style="margin-left:10%"
+								value="#{msg['es.sms.aportacion.meritos.nif.interesado']}" />
+							<p:inputText
+								value="#{detalleAportacionMeritosBean.aportacionMeritos.nifInteresado}"
+								readonly="true" />
+
+							<p:outputLabel style="margin-left:10%; "
+								value="#{msg['es.sms.aportacion.meritos.nombre.apellidos']}" />
+							<p:inputText style="width:100%"
+								value="#{detalleAportacionMeritosBean.aportacionMeritos.interesado.nombre} #{detalleAportacionMeritosBean.aportacionMeritos.interesado.apellido1} #{detalleAportacionMeritosBean.aportacionMeritos.interesado.apellido2}"
+								readonly="true" />
+
+						</p:panelGrid>
+						<p:panelGrid columns="6" layout="grid"
+							id="panelInformacionAportacionMeritos2"
+							columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-3">
+							<p:outputLabel style="margin-left:10%"
+								value="#{msg['es.sms.aportacion.meritos.fecha.grabacion']}" />
+							<p:inputText
+								value="#{detalleAportacionMeritosBean.aportacionMeritos.fechaGrabacion}"
+								readonly="true" >
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss"/>
+							</p:inputText>
+						
+
+							<p:outputLabel style="margin-left:10%" value="Puntuación Total" />
+							<p:inputText
+								value="#{detalleAportacionMeritosBean.puntuacionTotal.puntuacionTotalObtenida}"
+								readonly="true" />
+							<p:outputLabel  style="margin-left:10%" value="Aportación Baremada" />
+							<p:inputText id="baremada"
+								value="#{detalleAportacionMeritosBean.baremada}"
+								readonly="true" />
+						</p:panelGrid>
+						<p:panelGrid columns="6" layout="grid"
+						id="panelInformacionAportacionMeritos3"
+						columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-3">
+							<p:outputLabel style="margin-left:5%"
+							value="#{msg['es.sms.aportacion.meritos.numero.registros']}" />
+							<p:inputText
+							value="#{sesionBean.getNumRegistroActual(detalleAportacionMeritosBean.aportacionMeritos.codigoAportacionMeritos)}"
+							readonly="true" />
+							<p:outputLabel style="margin-left:10%" value="Tipo Aportación" />
+							<p:inputText
+								value="#{detalleAportacionMeritosBean.tipoAportacion}"
+								readonly="true" />
+						</p:panelGrid>
+		
+						<p:panelGrid columns="5" layout="grid"
+						id="panelInformacionAportacionMeritos4"
+						columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2,ui-g-12 ui-md-6 ui-lg-2">
+						<p:commandButton value="#{msg['es.sms.navegacion.volver']}"
+							style="width:100%" icon="fa fa-fw fa-fast-backward"
+							id="btnVolverListado" process="@this"
+							actionListener="#{detalleAportacionMeritosBean.volverListadoAportaciones()}" />
+
+						<p:commandButton value="#{msg['es.sms.navegacion.anterior']}"
+							style="width:100%" icon="fa fa-fw fa-chevron-left"
+							id="btnAnteriorLista" disabled="#{sesionBean.primero}"
+							process="@this"
+							actionListener="#{detalleAportacionMeritosBean.anteriorListaAportaciones()}" />
+
+
+						<p:commandButton value="#{msg['es.sms.navegacion.siguiente']}"
+							style="width:100%" icon="fa fa-fw fa-chevron-right"
+							id="btnSiguienteLista" disabled="#{sesionBean.ultimo}"
+							process="@this"
+							actionListener="#{detalleAportacionMeritosBean.siguienteListaAportaciones()}" />
+
+					</p:panelGrid>
+					</p:panelGrid>
+				</h:panelGroup>
+
+			<h:panelGroup rendered="#{detalleAportacionMeritosBean.puntuacionTotal!=null}" >
+				<h4 style="margin-left: 1%; margin-top: 2%;">Puntuación
+					obtenida en los apartados</h4>
+				<p:treeTable id="tablaListadoMeritosAportados" var="meritoAportado"
+					widgetVar="meritoAportado" reflow="true"
+					value="#{detalleAportacionMeritosBean.arbolMeritos}"
+					rowKey="#{meritoAportado.convocatoria.id}-#{meritoAportado.idInteresado}-#{meritoAportado.codigoMerito}"
+					emptyMessage="Sin resultados" rows="10" styleClass="filtrosOcultos"
+					style="min-width: 810px;" selectionMode="single">
+
+					<p:ajax event="select"
+						listener="#{detalleAportacionMeritosBean.onNodeSelect}"
+						global="false" />
+
+					<p:ajax event="expand"
+						listener="#{detalleAportacionMeritosBean.onNodeExpandMeritos}"
+						update="tablaListadoMeritosAportados" />
+
+					<p:column
+						headerText="#{msg['es.sms.aportacion.puntuacion.apartados.codigo']}"
+						styleClass="txt--centrado" style="width:10%">
+						<h:outputText value="#{meritoAportado.codigoMerito}">
+						</h:outputText>
+					</p:column>
+
+					<p:column
+						headerText="#{msg['es.sms.aportacion.puntuacion.apartados.descripcion']}"
+						styleClass="txt--centrado descripcion-arbol" style="width:70%;">
+						<h:outputText value="#{meritoAportado.merito.denominacion}">
+						</h:outputText>
+					</p:column>
+
+					<p:column
+						headerText="#{msg['es.sms.aportacion.puntuacion.apartados.cantidad.horas']}"
+						styleClass="txt--centrado">
+						<h:outputText value="#{meritoAportado.cantidadHoras}">
+						</h:outputText>
+					</p:column>
+
+					<p:column
+						headerText="#{msg['es.sms.aportacion.puntuacion.apartados.puntuacion.total.obtenida']}"
+						styleClass="txt--centrado">
+						<h:outputText value="#{meritoAportado.puntuacionTotalObtenida}">
+						</h:outputText>
+					</p:column>
+
+
+					</p:treeTable>
+					<h:panelGroup style="text-align:center; display: block; margin-top:1%">
+					<p:selectBooleanCheckbox itemLabel="#{msg['es.sms.aportacion.meritos.mostrar.todos']}">
+						<p:ajax event="change" update="tablaListadoMeritosAportados" listener="#{detalleAportacionMeritosBean.expandirArbol()}" />
+					</p:selectBooleanCheckbox>
+					</h:panelGroup>
+			</h:panelGroup>
+			</h:form>
+			
+
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

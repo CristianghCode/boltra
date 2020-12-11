@@ -1,0 +1,52 @@
+
+.icono-menu-ie8 {
+	display: inline-block;
+    font-size: 24px;
+    text-indent: 0px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    color: #dab016;
+}
+.icono-menu {
+	display: none !important;
+}
+
+.contenedor--fixed {
+	border-bottom: solid 2px #d4d4d9;
+}
+
+.ui-column-title-acciones {
+    display: none;
+}
+.ui-datatable THEAD TH .actualizar-tabla {
+	display: inline-block;
+}
+.acciones-tabla .acciones-tabla__accion {
+	margin-right: 15px;
+}
+
+.panel__cabecera  {
+	font-size: 16px;
+}
+
+.opcion_titulo {
+	display: inline-block;
+	min-height: 50px;
+}
+
+.ui-datepicker-inline {
+	display: none !important;
+	position: absolute;
+	left: 0;
+}
+.ui-datepicker-inline.is-active {
+	display: block !important;
+}
+.ui-timepicker-div {
+	display: none !important;
+}
+
+.ui-button-text {
+	font-size: 14px !important;
+}

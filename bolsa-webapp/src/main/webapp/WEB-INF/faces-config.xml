@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+
+		<message-bundle>messages</message-bundle>
+		<locale-config>
+			<default-locale>es</default-locale>
+			<supported-locale>es</supported-locale>
+		</locale-config>
+
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+		<system-event-listener>
+		    <system-event-listener-class>es.carm.sms.lobo2.web.jsf.scope.ViewScopeCallbackRegistrar</system-event-listener-class>
+		    <system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
+		    <source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>
+	 
+		<system-event-listener>
+		    <system-event-listener-class>es.carm.sms.lobo2.web.jsf.scope.ViewScopeCallbackRegistrar</system-event-listener-class>
+		    <system-event-class>javax.faces.event.PreDestroyViewMapEvent</system-event-class>
+		    <source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>   
+  	</application>
+  	<lifecycle>
+		<phase-listener id="nocache">
+			es.carm.sms.lobo2.web.jsf.NoBrowserCachePhaseListener
+		</phase-listener>
+	</lifecycle>
+	<factory>
+      <exception-handler-factory>
+       es.carm.sms.lobo2.web.jsf.CustomExceptionHandlerFactory
+      </exception-handler-factory>
+    </factory>
+</faces-config>

@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: es.sms.bolsa.oracleforms.menu.source.OpcionMenuRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.054 s <<< FAILURE! - in es.sms.bolsa.oracleforms.menu.source.OpcionMenuRepositoryTest
+noSeRecuperaNingunaOpcionOk(es.sms.bolsa.oracleforms.menu.source.OpcionMenuRepositoryTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [es.sms.bolsa.view.MenuManagedBean] from ClassLoader [sun.misc.Launcher$AppClassLoader@a57993]
+Caused by: java.lang.NoClassDefFoundError: LMenuModel;
+Caused by: java.lang.ClassNotFoundException: MenuModel
+
+seRecuperanOpcionesOk(es.sms.bolsa.oracleforms.menu.source.OpcionMenuRepositoryTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [es.sms.bolsa.view.MenuManagedBean] from ClassLoader [sun.misc.Launcher$AppClassLoader@a57993]
+Caused by: java.lang.NoClassDefFoundError: LMenuModel;
+Caused by: java.lang.ClassNotFoundException: MenuModel
+
+seRecuperanOpcionesOkRolCaseInsensitive(es.sms.bolsa.oracleforms.menu.source.OpcionMenuRepositoryTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [es.sms.bolsa.view.MenuManagedBean] from ClassLoader [sun.misc.Launcher$AppClassLoader@a57993]
+Caused by: java.lang.NoClassDefFoundError: LMenuModel;
+Caused by: java.lang.ClassNotFoundException: MenuModel
+

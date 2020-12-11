@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:metadata>
+	<f:viewAction action="#{invocacionDesdeFormsManagedBean.tratarLlamada}" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+			<h:form id="loginForm">
+
+				<h:panelGroup styleClass="contenidoCentrado" style="padding:20px;"
+					rendered="#{invocacionDesdeFormsManagedBean.mostrarOpciones}">
+
+
+					<h:form id="form" styleClass="panel sin-espacio-col-derecha">
+
+						<h:panelGroup layout="block" styleClass="centrado"
+							style="padding: 20px;max-width:500px; margin:auto">
+
+							<div class="panel__cabecera">
+								<span class="txt--mayusculas">Opciones</span>
+							</div>
+
+							<b:row id="formato">
+								<b:column col-sm="2">
+									<h:outputLabel value="Formato" styleClass="etiqueta medioCorta" />
+								</b:column>
+								<b:column col-sm="5">
+									<p:selectOneMenu id="formatoInput"
+										value="#{invocacionDesdeFormsManagedBean.formatoSeleccionado}">
+										<f:selectItem itemLabel="Seleccionar..." itemValue="#{null}"
+											noSelectionOptionñ="true" />
+										<f:selectItems
+											value="#{invocacionDesdeFormsManagedBean.formatosFichero}"
+											var="servicio" />
+									</p:selectOneMenu>
+									<div class="limpiar indentadoMedioEstrecho">
+										<p:message display="text" for="formatoInput" />
+									</div>
+								</b:column>
+							</b:row>
+
+							<b:row id="numeroCopiasColumn" style="margin-top:10px;">
+								<b:column col-sm="2">
+									<h:outputLabel value="Copias"
+										styleClass="etiqueta medioCorta" />
+								</b:column>
+								<b:column col-sm="5">
+									<p:inputText maxlength="1" cols="1" id="numeroCopias" style="width:100px;"
+										value="#{invocacionDesdeFormsManagedBean.numeroCopias}">
+									</p:inputText>
+									<div class="limpiar indentadoMedioEstrecho">
+										<p:message display="text" for="numeroCopias" />
+									</div>
+								</b:column>
+							</b:row>
+
+							<h:panelGroup id="botonCargarFormulario" layout="block" style="margin-top:20px;"
+								styleClass="indentadoMedioEstrecho separarArriba">
+								<p:commandButton
+									oncomplete="window.opener=null;window.open('','_self');window.close();"
+									value="Aceptar" ajax="false" style="margin:0;"
+									actionListener="#{invocacionDesdeFormsManagedBean.botonAceptar}" />
+
+								<p:commandButton ajax="false"
+									onclick="window.opener=null;window.open('','_self');window.close();"
+									value="Atras"></p:commandButton>
+							</h:panelGroup>
+						</h:panelGroup>
+					</h:form>
+
+					<!-- 						<p:commandButton ajax="false" onclick="window.close()"></p:commandButton> -->
+				</h:panelGroup>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

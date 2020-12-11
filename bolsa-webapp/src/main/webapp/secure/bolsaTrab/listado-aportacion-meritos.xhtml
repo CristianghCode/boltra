@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+			<h:form id="aportaciones-meritos-form"
+				onkeypress="if (event.keyCode == 13) { return false; }">
+				<h:panelGroup>
+					<h3 style="margin-left: 1%">Listado de aportaciones de méritos</h3>
+				</h:panelGroup>
+				<h:panelGroup>
+					<h4 style="margin-left: 1%">Filtros</h4>
+					<p:panelGrid columns="4" layout="grid" id="panelFiltroBolsa"
+						columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel style="margin-left:10%"
+							value="#{msg['es.sms.aportacion.meritos.filtro.bolsa']}" />
+						<p:inputText id="idbolsa-input"
+							value="#{listadoAportacionMeritosBean.idBolsaIntroducido}"
+							title="Identificador" />
+
+						<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
+							id="btnBusquedaBolsaTrab" process="idbolsa-input @this"
+							actionListener="#{listadoAportacionMeritosBean.buscarBolsaPorId()}"
+							update="panelFiltroBolsa panelFiltroConvocatoria aportaciones-meritos-form:panelFiltroNifInteresado aportaciones-meritos-form:bolsaTrabDataTable" />
+
+
+
+						<p:selectOneMenu id="listaBolsa-selectonemenu"
+							value="#{listadoAportacionMeritosBean.bolsaTrabSeleccionada}"
+							converter="#{bolsaTrabConverter}">
+							<f:selectItem itemLabel="Selecciona una bolsa de trabajo"
+								itemValue="#{null}" />
+							<f:selectItems
+								value="#{listadoAportacionMeritosBean.listBolsaTrab}"
+								var="bolsaTrab"
+								itemLabel="#{bolsaTrab.codigo} - #{bolsaTrab.descripcionCorta}"
+								itemValue="#{bolsaTrab}" />
+							<p:ajax event="itemSelect" process="@this"
+								update="idbolsa-input panelFiltroConvocatoria aportaciones-meritos-form:panelFiltroNifInteresado aportaciones-meritos-form:bolsaTrabDataTable"
+								listener="#{listadoAportacionMeritosBean.actualizaInputBolsaTrab()}" />
+						</p:selectOneMenu>
+
+
+					</p:panelGrid>
+					<p:panelGrid columns="4" layout="grid" id="panelFiltroConvocatoria"
+						columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel style="margin-left:10%"
+							value="#{msg['es.sms.aportacion.meritos.filtro.convocatoria']}" />
+						<p:inputText id="idconvocatoria-input"
+							value="#{listadoAportacionMeritosBean.idConvocatoriaIntroducido}"
+							title="Identificador"
+							disabled="#{empty listadoAportacionMeritosBean.listConvocatorias}" />
+
+						<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
+							id="btnBusquedaConvocatoria" process="idconvocatoria-input @this"
+							actionListener="#{listadoAportacionMeritosBean.buscarConvocatoriaPorIdAndBolsa()}"
+							update="panelFiltroConvocatoria aportaciones-meritos-form:panelFiltroNifInteresado aportaciones-meritos-form:bolsaTrabDataTable"
+							disabled="#{empty listadoAportacionMeritosBean.listConvocatorias}" />
+
+
+
+
+						<p:selectOneMenu id="listaConvocatorias-selectonemenu"
+							disabled="#{empty listadoAportacionMeritosBean.listConvocatorias}"
+							value="#{listadoAportacionMeritosBean.convocatoriaSeleccionada}"
+							converter="#{convocatoriaConverter}">
+							<f:selectItem itemLabel="Selecciona una convocatoria"
+								itemValue="#{null}" />
+							<f:selectItems
+								value="#{listadoAportacionMeritosBean.listConvocatorias}"
+								var="convocatoria"
+								itemLabel="#{convocatoria.id} - #{convocatoria.denominacion}"
+								itemValue="#{convocatoria}" />
+							<p:ajax event="itemSelect" process="@this"
+								update="idconvocatoria-input aportaciones-meritos-form:panelFiltroNifInteresado aportaciones-meritos-form:bolsaTrabDataTable"
+								listener="#{listadoAportacionMeritosBean.actualizaInputConvocatoria()}" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+
+					<p:panelGrid columns="4" layout="grid"
+						id="panelFiltroNifInteresado" 
+						columnClasses="ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-6">
+						<p:outputLabel style="margin-left:10%" rendered="#{listadoAportacionMeritosBean.convocatoriaSeleccionada != null}" 
+							value="#{msg['es.sms.aportacion.meritos.filtro.nif.interesado']}" />
+						<p:inputText id="nifinteresado-input" rendered="#{listadoAportacionMeritosBean.convocatoriaSeleccionada != null}" 
+							value="#{listadoAportacionMeritosBean.nifInteresadoIntroducido}"
+							title="Identificador" />
+
+						<p:commandButton value="Buscar" icon="fa fa-fw fa-search"
+							id="btnBusquedaNifInteresado" onstart="PF('aportacionMeritos').getPaginator().setPage(0)"
+							process="panelFiltroBolsa panelFiltroConvocatoria nifinteresado-input @this"
+							actionListener="#{listadoAportacionMeritosBean.buscarConvocatoriaPorIdAndBolsaAndNif()}"
+							update="aportaciones-meritos-form:bolsaTrabDataTable"
+							rendered="#{listadoAportacionMeritosBean.convocatoriaSeleccionada != null}"  />
+
+						<p:commandButton value="Limpiar NIF" icon="fa fa-fw fa-trash" rendered="#{listadoAportacionMeritosBean.convocatoriaSeleccionada != null}" 
+							id="btnLimpiarNifInteresado" process="@this" onstart="PF('aportacionMeritos').getPaginator().setPage(0)"
+							actionListener="#{listadoAportacionMeritosBean.limpiarNifInteresado()}"
+							update="panelFiltroNifInteresado aportaciones-meritos-form:bolsaTrabDataTable"/>
+
+					</p:panelGrid>
+
+					<p:dataTable id="bolsaTrabDataTable" var="aportacionMeritos"
+						widgetVar="aportacionMeritos"
+						value="#{listadoAportacionMeritosBean.listAportacionMeritos}"
+						rows="10"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						currentPageReportTemplate="{totalRecords} resultados encontrados"
+						rowKey="#{aportacionMeritos.codigoAportacionMeritos}" lazy="true"
+						emptyMessage="Sin resultados" paginator="true"
+						paginatorPosition="bottom" rowsPerPageTemplate="10,20,50"
+						paginatorAlwaysVisible="true" styleClass="filtrosOcultos"
+						style="min-width: 810px;" selectionMode="single">
+
+						<p:ajax event="rowDblselect"
+							listener="#{listadoAportacionMeritosBean.onRowDblClckSelect}"
+							global="false" />
+
+						<p:column id="codigoAportacionMeritos"
+							headerText="#{msg['es.sms.aportacion.meritos.codigo']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText
+								value="#{aportacionMeritos.codigoAportacionMeritos}">
+							</h:outputText>
+						</p:column>
+
+						<p:column id="convocatoriaMeritos"
+							headerText="#{msg['es.sms.aportacion.meritos.convocatoria']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText
+								value="#{aportacionMeritos.convocatoria.denominacion}">
+							</h:outputText>
+						</p:column>
+
+						<p:column id="identificadorConvocatoriaGestion"
+							headerText="#{msg['es.sms.aportacion.meritos.identificador.convocatoria.gestion']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText
+								value="#{aportacionMeritos.identificadorConvocatoriaGestion}">
+							</h:outputText>
+						</p:column>
+
+						<p:column id="nifInteresado"
+							headerText="#{msg['es.sms.aportacion.meritos.nif.interesado']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{aportacionMeritos.nifInteresado}">
+							</h:outputText>
+						</p:column>
+						<p:column id="nombre"
+							headerText="#{msg['es.sms.aportacion.meritos.nombre.apellidos']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{aportacionMeritos.interesado.nombreCompleto}">
+							</h:outputText>
+						</p:column>
+						<p:column id="fechaGrabacion"
+							headerText="#{msg['es.sms.aportacion.meritos.fecha.grabacion']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{aportacionMeritos.fechaGrabacion}" >
+							<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss"/>
+							</h:outputText>
+						</p:column>
+
+						<p:column
+						headerText="PUNTUACIÓN INTERESADO"
+						styleClass="txt--centrado" style="width: 60px;">
+						<h:outputText value="#{listadoAportacionMeritosBean.getPuntuacionTotalOpositor(aportacionMeritos)}">
+						</h:outputText>
+					</p:column>
+					
+					<p:column
+					headerText="PUNTUACIÓN TRIBUNAL"
+					styleClass="txt--centrado" style="width: 60px;">
+					<h:outputText value="#{listadoAportacionMeritosBean.getPuntuacionTotalTribunal(aportacionMeritos)}">
+					</h:outputText>
+					</p:column>
+
+					
+
+
+					</p:dataTable>
+				</h:panelGroup>
+
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

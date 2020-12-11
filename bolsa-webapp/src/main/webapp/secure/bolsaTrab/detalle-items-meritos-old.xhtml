@@ -1,0 +1,191 @@
+
+ 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+	<p:dialog id="itemsMeritosDialogo" width="90%" height="800"
+		widgetVar="itemsMeritosdlg" resizable="true" responsive="true"
+		visible="false" scrollable="true" closable="true" closeOnEscape="true"
+		modal="true" header="Items aportados por tipo de mérito">
+ 
+		<p:panelGrid columns="4" layout="grid"
+			columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-1, ui-g-12 ui-md-6 ui-lg-6"
+			style="margin-bottom:2%">
+
+			<p:outputLabel style="margin-left:5%"
+				value="#{msg['es.sms.aportacion.meritos.item.codigo.merito']}" />
+			<p:inputText
+				value="#{detalleAportacionMeritosBean.punObtSeleccionado.codigoMerito}"
+				readonly="true" />
+
+			<p:outputLabel style="margin-left:5%"
+				value="#{msg['es.sms.aportacion.puntuacion.apartados.descripcion']}" />
+			<p:inputText style="width: 100%; "
+				value="#{detalleAportacionMeritosBean.punObtSeleccionado.merito.denominacion}"
+				readonly="true" />
+
+			<p:outputLabel style="margin-left:5%"
+				value="#{msg['es.sms.aportacion.puntuacion.apartados.cantidad.horas']}" />
+			<p:inputText 
+				value="#{detalleAportacionMeritosBean.punObtSeleccionado.cantidadHoras}"
+				readonly="true" />
+
+			<p:outputLabel style="margin-left:5%"
+				value="#{msg['es.sms.aportacion.puntuacion.apartados.puntuacion.total.obtenida']}" />
+			<p:inputText
+				value="#{detalleAportacionMeritosBean.punObtSeleccionado.puntuacionTotalObtenida}"
+				readonly="true" />
+
+			<p:outputLabel style="margin-left:5%"
+				value="#{msg['es.sms.aportacion.meritos.puntuacion.tope']}" />
+			<p:inputText
+				value="#{detalleAportacionMeritosBean.punObtSeleccionado.merito.topePuntos}"
+				readonly="true" />
+
+		</p:panelGrid>
+	
+		<p:dataTable id="tablaListadoMeritosAportadosItems" var="item"
+			widgetVar="item"
+			value="#{detalleAportacionMeritosBean.aportacionMeritosItemPaginator}"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+			currentPageReportTemplate="{totalRecords} resultados encontrados"
+			rowKey="#{item.id}" emptyMessage="Sin resultados"
+			lazy="true" editMode="row" paginator="true" paginatorPosition="bottom" editable="true"
+			rowsPerPageTemplate="10,20,50"
+			paginatorAlwaysVisible="true" rows="10" style="min-width: 810px;"
+			selectionMode="single" rowIndexVar="index"
+			>
+			
+			
+					
+			<p:column 
+				headerText="Editar Item"
+				styleClass="txt--centrado" style="width: 1%;" >
+				<h:panelGroup  id="editButtons">
+					
+					<h:panelGroup rendered="#{!detalleAportacionMeritosBean.isItemEditing()}">
+						<p:commandButton   id="editarItem"  icon="fa fa-fw fa-eye" style="box-shadow: none;"
+						actionListener="#{detalleAportacionMeritosBean.itemEdit}"	update="editButtons @(.row#{index})" >
+						</p:commandButton>
+					</h:panelGroup>
+					
+					<h:panelGroup rendered="#{detalleAportacionMeritosBean.isItemEditing()}">
+						<h:panelGrid id="editingButtons" columns="2" cellpadding="5">
+							<p:commandButton icon="fa fa-fw fa-edit" style="margin-right:20px;"   update=" editButtons  @(.row#{index})" >
+								<f:actionListener binding="#{detalleAportacionMeritosBean.editingAccept(index)}"/>
+								<f:actionListener binding="#{detalleAportacionMeritosBean.finishEditing()}"/>
+							</p:commandButton>
+							<p:commandButton icon="fa fa-fw fa-edit"  action="#{detalleAportacionMeritosBean.finishEditing()}"  style="margin-right:20px;"  update=" editButtons @(.row#{index})" />	
+						</h:panelGrid>
+						
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:column>	
+			
+		 
+			<p:column headerText="Identificador" styleClass="txt--centrado"
+				style="width: 1%;">
+				<h:outputText value="#{item.id}" />
+			</p:column>
+		
+			<p:columns styleClass="txt--centrado"  value="#{detalleAportacionMeritosBean.atributesColumns}" var="atributesName" columnIndexVar="colIndex" style="width: 1%;">
+				<f:facet name="header">
+						<h:outputText value="#{atributesName}" />
+					</f:facet>
+					<h:panelGroup   class="row#{index}" id="dinamica">
+						<h:panelGroup id="itemValue"  rendered="#{!detalleAportacionMeritosBean.isItemEditing()}">
+							<h:outputText value="#{detalleAportacionMeritosBean.getAtributeColumnValue(item,index,colIndex)}" />
+						</h:panelGroup>	
+						<h:panelGroup id="itemInput"  rendered="#{detalleAportacionMeritosBean.isItemEditing()}">
+							<h:form >
+								<p:inputTextarea  id="firstname" value="#{detalleAportacionMeritosBean.bufferColumnsTipoItem[index][colIndex]}">
+									<p:ajax event="blur" />
+								</p:inputTextarea>
+							</h:form>
+						</h:panelGroup>
+					</h:panelGroup>
+			</p:columns>	
+	
+			<p:column
+				headerText="#{msg['es.sms.aportacion.meritos.item.fecha.entrada.vigor']}"
+				styleClass="txt--centrado" style="width: 1%;">
+				<h:outputText value="#{item.merito.fechaEntradaVigor}" />
+			</p:column>
+
+			<p:column
+				headerText="#{msg['es.sms.aportacion.meritos.item.fecha.grabacion']}"
+				styleClass="txt--centrado" style="width: 1%;">
+				<h:outputText value="#{item.item.fechaGrabacion}" />
+			</p:column>
+
+			<p:column headerText="#{msg['es.sms.boltra.ver.actualizar.situacion']}"
+				styleClass="txt--centrado" style="width: 1%;">
+				<p:commandButton process="@this" id="btnDialogActualizarSituacionMerito"
+					actionListener="#{detalleAportacionMeritosBean.editarSituacion(item)}"
+					update="situacionesDialogo" style="margin-right:20px;"
+					icon="fa fa-fw fa-edit" />
+				<p:tooltip  for="btnDialogActualizarSituacionMerito" value="Ver la situación del mérito" position="right" />
+			</p:column>
+
+			<p:column
+				headerText="#{msg['es.sms.aportacion.meritos.item.fichero.visualizar']}"
+				styleClass="txt--centrado" style="width: 1%;">
+					<p:commandButton  id="btnVisualizarDocumentacionMerito"  icon="fa fa-fw fa-eye" style="box-shadow: none;" disabled="#{not detalleAportacionMeritosBean.puedeDescargarFichero(item.item.fichero.nombreCarpeta)}"
+					update="pdf"  actionListener="#{detalleAportacionMeritosBean.cargarFichero(item.item.fichero)}"	 >
+					</p:commandButton>
+					<p:tooltip  for="btnVisualizarDocumentacionMerito" value="visualizar documentación aportada en el mérito" position="right" />	
+			</p:column>	
+					
+		</p:dataTable>
+	</p:dialog>
+
+
+	<p:dialog id="situacionesDialogo" width="50%"
+		widgetVar="situacionesdlg" resizable="true" responsive="true"
+		visible="false" scrollable="true" closable="true" closeOnEscape="true"
+		modal="true" header="Ver situación del mérito seleccionado">
+		<h:form id="formSituaciones">
+			<p:selectOneRadio id="situaciones" converter="#{situacionConverter}"
+				value="#{detalleAportacionMeritosBean.situacionSeleccionada}"
+				layout="responsive" columns="1">
+				<f:selectItems value="#{detalleAportacionMeritosBean.situaciones}"
+					var="situacion"
+					itemLabel="#{situacion.nombre} - #{situacion.descripcion}"
+					itemValue="#{situacion}" />
+			</p:selectOneRadio>
+			<p:commandButton id="btnActualizarSituacionMerito" process="formSituaciones:situaciones @this"
+				onClick="" actionListener="#{detalleAportacionMeritosBean.actualizarSituacion()}" update="aportaciones-meritos-form:baremada"
+				style="margin-right:20px;" icon="fa fa-fw fa-save" />
+			<p:tooltip  for="btnActualizarSituacionMerito" value="Actualizar situación del mérito seleccionado" position="right" />
+		</h:form>
+	</p:dialog>
+
+	<script language="JavaScript" type="text/javascript">
+		function abrirDialogoPDF() {
+			 document.getElementById("itemsMeritosDialogo").style.setProperty('z-index', '1', 'important');
+		 };
+		 function cerrarDialogoPDF() {	
+			 document.getElementById("itemsMeritosDialogo").style.setProperty('z-index', '1113', 'important');
+		 };
+	</script>
+	<p:dialog onShow="abrirDialogoPDF();" onHide="cerrarDialogoPDF();" class="pdf-dialogo" id="pdf" width="80%"
+		widgetVar="pdf" resizable="false" responsive="true"
+		visible="false" scrollable="false" closable="true" closeOnEscape="true" draggable="false" header="VISOR DE PDF"
+		modal="true" >	
+			<p:ajax event="close" listener="#{detalleAportacionMeritosBean.eliminarFichero()}" />
+			<p:media rendered="#{detalleAportacionMeritosBean.nombrePDFEnCarpeta!=NULL}" style="height: 85vh!important;" value="#{detalleAportacionMeritosBean.visualizarFichero()}" width="100%" height="100%"/>
+	</p:dialog>
+	
+	
+
+
+
+
+</ui:composition>

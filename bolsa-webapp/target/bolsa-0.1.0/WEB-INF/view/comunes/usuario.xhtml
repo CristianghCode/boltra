@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+<body>
+	<ui:composition>
+		<h:form styleClass="menu">
+			<h:panelGroup rendered="#{sec:ifAllGranted('ROLE_ANONYMOUS')}">
+				<h:outputLink styleClass="accion espacio-derecha-med" value="#{layoutManagedBean.urlSolicitarContrasena}">
+					<span class="accion__txt">Solicitar contraseña</span>
+					<b:iconAwesome tooltip="Pulse aquí para solicitar contraseña" name="lock pdp-icon-candado icono" />
+				</h:outputLink>
+				<h:outputLink styleClass="accion" value="#{layoutManagedBean.urlIdentificacionCas}">
+					<span class="accion__txt">Identificarse</span>
+					<b:iconAwesome tooltip="Pulse aquí para identificarse en la aplicación" name="user pdp-icon-usuario icono" />
+				</h:outputLink>
+				<h:outputLink style="font-size: 12px;margin-top: 32px;" styleClass="accion">
+					<span>#{msg['project.version']}</span>
+				</h:outputLink>
+
+				</h:panelGroup>
+			
+			<h:panelGroup rendered="#{sec:isAuthenticated()}">
+				<h:outputText styleClass="usuario" value="#{layoutManagedBean.userName}" />
+				
+				<h:outputLink styleClass="accion salir" value="#{request.contextPath}/j_spring_security_logout">
+					<b:iconAwesome tooltip="Salir" name="sign-out pdp-icon-logout icono" />
+				</h:outputLink>
+				<h:outputLink style="font-size: 12px;margin-top: 32px;" styleClass="accion">
+					<span>#{msg['project.version']}</span>
+				</h:outputLink>
+
+
+				
+			</h:panelGroup>
+		</h:form>
+	</ui:composition>
+</body>
+</html>

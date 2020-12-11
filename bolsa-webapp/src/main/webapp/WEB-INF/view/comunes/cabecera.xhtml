@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<body>
+	<ui:composition>
+		<div class="cabecera">
+			<div class="cabecera--superior">
+   				<b:column col-xs="8" col-sm="9" styleClass="cabecera__titular">
+   					<h:link styleClass="link" outcome="/home" title="#{msg['app.cabecera.enlace']}">
+	    				<p:graphicImage styleClass="link__img"
+							url="#{resource['sms/img/logo-sms.png']}"
+							alt="Servicio Murciano de Salud" title="Servicio Murciano de Salud" />
+   					
+						<span class="titulo">
+							<h:outputText styleClass="link__txt" value="#{msg['app.cabecera.enlace']}" />
+							<ui:insert name="titulo" />
+						</span>
+					</h:link>
+   				</b:column>
+   				
+   				<b:column col-xs="4" col-sm="3" styleClass="cabecera__menu">
+   					<ui:include src="/WEB-INF/view/comunes/usuario.xhtml" />
+   				</b:column>
+			</div>
+			<h:panelGroup layout="block" styleClass="cabecera--inferior" rendered="#{sec:isAuthenticated()}">
+   				<b:column col-md="9" styleClass="cabecera__paciente">
+					<ui:include src="/WEB-INF/view/comunes/menu.xhtml" />
+   				</b:column>
+   				
+   				<b:column col-xs="4" col-sm="3" style="background: #c7d6e1;">
+				
+				</b:column>
+				   
+			</h:panelGroup>
+		</div>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1" />
+	<meta name="description" content="#{msg['app.cabecera.enlace']} #{msg['project.version']}" />
+	<title>#{msg['app.cabecera.enlace']}</title>
+	
+	<link rel="stylesheet" type="text/css" href="#{layoutManagedBean.contexto}/resources/font-awesome-4.7.0/css/font-awesome.min.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="#{layoutManagedBean.contexto}/resources/sms/css/pdpicons.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="#{layoutManagedBean.contexto}/resources/sms/css/gdp.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="#{layoutManagedBean.contexto}/resources/sms/css/estilos.css" media="screen" />
+	<h:outputText escape="false" value="&lt;!--[if lte IE 9]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;#{layoutManagedBean.contexto}/resources/sms/css/ielte9.css&quot; type=&quot;text/css&quot;/&gt;&lt;![endif]--&gt;" />
+	<h:outputText escape="false" value="&lt;!--[if lte IE 8]&gt;&lt;link rel=&quot;stylesheet&quot; href=&quot;#{layoutManagedBean.contexto}/resources/sms/css/ielte8.css&quot; type=&quot;text/css&quot;/&gt;&lt;![endif]--&gt;" />
+	<script type="text/javascript" src="#{layoutManagedBean.contexto}/resources/sms/js/localeSpanish.js" />
+	<script type="text/javascript" src="#{layoutManagedBean.contexto}/resources/sms/js/funciones.js" />
+</h:head>
+<h:body>
+	<div class="contenedor">
+		<div class="contenedor__cabecera">
+			<ui:include src="/WEB-INF/view/comunes/cabecera.xhtml" />
+		</div>
+		
+		<div class="contenedor__central #{!sec:isAuthenticated()?'':'sin-cabecera--inferior'}">
+			<ui:include src="/WEB-INF/view/comunes/messages.xhtml" />
+			<ui:insert name="body"></ui:insert>
+		</div>
+		
+		<div class="contenedor__pie">
+			<ui:include src="/WEB-INF/view/comunes/pie.xhtml" />
+		</div>
+	</div>
+	
+	<ui:include src="/WEB-INF/view/comunes/dialogs.xhtml" />
+	
+	<h:outputScript>
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 1) {
+				$('.contenedor__cabecera').addClass('contenedor--fixed');
+			} else {
+			  	$('.contenedor__cabecera').removeClass('contenedor--fixed');
+			}
+		});
+	</h:outputScript>
+</h:body>
+</html>

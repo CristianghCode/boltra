@@ -1,0 +1,18 @@
+
+.fountainGif {
+	display: inline-block;
+}
+.spinner,
+#fountainG {
+	display: none;
+}
+
+.spinner-wrap {
+	padding-top: 90px;
+	background: #fff;
+}
+
+.menu .usuario {
+    margin-top: 25px;
+    display: inline-block;
+}

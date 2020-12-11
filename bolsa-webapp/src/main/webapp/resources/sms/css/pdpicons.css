@@ -1,0 +1,874 @@
+
+@font-face {
+  font-family: "PDPicons";
+  src:url("../fonts/PDPicons.eot");
+  src:url("../fonts/PDPicons.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/PDPicons.woff") format("woff"),
+    url("../fonts/PDPicons.ttf") format("truetype"),
+    url("../fonts/PDPicons.svg#PDPicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "PDPicons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="pdp-icon-"]:before,
+[class*=" pdp-icon-"]:before {
+  font-family: "PDPicons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pdp-icon-14, .icon-14 { font-size: 14px !important; line-height: 14px; }
+.pdp-icon-16, .icon-16 { font-size: 16px !important; line-height: 16px; }
+.pdp-icon-18, .icon-18 { font-size: 18px !important; line-height: 18px; }
+.pdp-icon-20, .icon-20 { font-size: 20px !important; line-height: 20px; }
+.pdp-icon-22, .icon-22 { font-size: 22px !important; line-height: 22px; }
+.pdp-icon-24, .icon-24 { font-size: 24px !important; line-height: 24px; }
+.pdp-icon-32, .icon-32 { font-size: 32px !important; line-height: 32px; }
+.pdp-icon-40, .icon-40 { font-size: 40px !important; line-height: 40px; }
+.pdp-icon-48, .icon-48 { font-size: 48px !important; line-height: 48px; }
+.pdp-icon-64, .icon-64 { font-size: 64px !important; line-height: 64px; }
+.pdp-icon-96, .icon-96 { font-size: 96px !important; line-height: 96px; }
+.pdp-icon-128, .icon-128 { font-size: 128px !important; line-height: 128px; }
+
+.pdp-icon-aceptar:before, .pdp-icon-icono-mensaje-S:before {
+  content: "\61" !important;
+}
+.pdp-icon-acostar:before {
+  content: "\62" !important;
+}
+.pdp-icon-adn:before,
+.SERVICIO-CENTRO-DE-BIOQUIMICA-Y-GENETICA-CLINICA:before,
+.SERVICIO-GENETICA-MEDICA:before {
+  content: "\e048" !important;
+}
+.pdp-icon-alergologia:before,
+.SERVICIO-ALERGOLOGIA:before,
+.SERVICIO-ALERGOLOGIA-INFANTIL:before {
+  content: "\63" !important;
+}
+.pdp-icon-anatomia-patologica:before,
+.SERVICIO-ANATOMIA-PATOLOGICA:before,
+.SERVICIO-ANALISIS-CLINICOS:before {
+  content: "\64" !important;
+}
+.pdp-icon-andrologia:before,
+.SERVICIO-ANDROLOGIA:before {
+  content: "\e034" !important;
+}
+.pdp-icon-anestesiologia:before,
+.SERVICIO-ANESTESIA-Y-REANIMACION:before,
+.SERVICIO-ANESTESIOLOGIA-Y-REANIMACION:before,
+.SERVICIO-ANESTESIA-HGU:before {
+  content: "\65" !important;
+}
+.pdp-icon-aparato-digestivo:before {
+  content: "\66" !important;
+}
+.pdp-icon-aparato-digestivo-completo:before,
+.SERVICIO-CIRUGIA-GENERAL-Y-DIGESTIVA:before,
+.SERVICIO-CIRUGIA-GENERAL-Y-DIGESTIVO:before,
+.SERVICIO-C-GRAL-Y-DIGESTIVA-CE:before,
+.SERVICIO-DIGESTIVO-PEDIATRIA:before,
+.SERVICIO-DIGESTIVO-EL-CARMEN:before,
+.SERVICIO-DIGESTIVO-CIEZA:before,
+.SERVICIO-DIGESTIVO-MOLINA:before,
+.SERVICIO-APARATO-DIGESTIVO:before,
+.SERVICIO-DIGESTIVO:before,
+.SERVICIO-GASTROENTEROLOGIA-INFANTIL:before,
+.SERVICIO-ENDOSCOPIAS:before {
+  content: "\e035" !important;
+}
+.pdp-icon-aparato-respiratorio:before,
+.SERVICIO-PULMON-Y-CORAZON-CE:before {
+  content: "\e036" !important;
+}
+.pdp-icon-arroba:before {
+  content: "\67" !important;
+}
+.pdp-icon-barcode:before {
+  content: "\68" !important;
+}
+.pdp-icon-buzon-de-sugerencias:before {
+  content: "\69" !important;
+}
+.pdp-icon-calendario:before {
+  content: "\6a" !important;
+}
+.pdp-icon-calendario-check:before {
+  content: "\e028" !important;
+}
+.pdp-icon-cancelar:before, .pdp-icon-icono-mensaje-E:before, .pdp-icon-icono-mensaje-W:before {
+  content: "\6b" !important;
+}
+.pdp-icon-candado:before {
+  content: "\e030" !important;
+}
+.pdp-icon-cardiologia:before,
+.SERVICIO-CARDIOLOGIA-CIEZA:before,
+.SERVICIO-CARDIOLOGIA-JUMILLA:before,
+.SERVICIO-CARDIOLOGIA-EL-CARMEN:before,
+.SERVICIO-CARDIOLOGIA-INFANTIL:before,
+.SERVICIO-CARDIOLOGIA:before,
+.SERVICIO-CARDIOLOGIA-PEDIATRICA:before,
+.SERVICIO-CARDIOLOGIA-MOLINA:before{
+  content: "\6c" !important;
+}
+.pdp-icon-cenar:before {
+  content: "\6d" !important;
+}
+.pdp-icon-centro:before {
+  content: "\6e" !important;
+}
+.pdp-icon-certificado:before {
+  content: "\6f" !important;
+}
+.pdp-icon-chat:before {
+  content: "\70" !important;
+}
+.pdp-icon-chat-enfermero:before {
+  content: "\e026" !important;
+}
+.pdp-icon-chat-medico:before {
+  content: "\e027" !important;
+}
+.pdp-icon-chat-nuevo:before {
+  content: "\71" !important;
+}
+.pdp-icon-chat-ocupado:before {
+  content: "\72" !important;
+}
+.pdp-icon-chat-pregunta:before {
+  content: "\73" !important;
+}
+.pdp-icon-chat-respuesta:before {
+  content: "\74" !important;
+}
+.pdp-icon-chat-simple:before {
+  content: "\75" !important;
+}
+.pdp-icon-cirugia-cardiaca:before,
+.SERVICIO-CIRUGIA-CARDIOVASCULAR-EXTERNA:before,
+.SERVICIO-CIRUGIA-CARDIOVASCULAR-INFANTIL:before,
+.SERVICIO-CIRUGIA-CARDIOVASCULAR:before,
+.SERVICIO-CIRUGIA-CARDIACA:before  {
+  content: "\76" !important;
+}
+.pdp-icon-cirugia-general:before,
+.SERVICIO-CIRUGIA-GENERAL:before,
+.SERVICIO-CIRUGIA-GENERAL-STA-ROSA:before,
+.SERVICIO-CIRUGIA-HGU:before,
+.SERVICIO-CIRUGIA-G-Y-D-I:before,
+.SERVICIO-CIRUGIA-G-EL-CARMEN:before,
+.SERVICIO-CIRUGIA-G-Y-D-II:before,
+.SERVICIO-CIRUGIA-MAYOR-AMBULATORIA:before {
+  content: "\77" !important;
+}
+.pdp-icon-cirugia-maxilofacial:before,
+.SERVICIO-CIRUGIA-MAXILOFACIAL:before,
+.SERVICIO-CMAXILOFACIAL-CCONCERTADOS:before,
+.SERVICIO-CIRUGIA-MAXILOFACIAL-INFANTIL:before {
+  content: "\78" !important;
+}
+.pdp-icon-cirugia-ortopedica:before {
+  content: "\79" !important;
+}
+.pdp-icon-cirugia-plastica:before,
+.SERVICIO-CIRUGIA-PLASTICA-Y-REPARADORA:before,
+.SERVICIO-CIRUGIA-PLASTICA-Y-QUEMADOS:before,
+.SERVICIO-CIRUGIA-PLASTICA-Y-QUEMADOS-INFANTIL:before,
+.SERVICIO-CIRUGIA-PLASTICA:before {
+  content: "\7a" !important;
+}
+.pdp-icon-cirugia-toracica:before,
+.SERVICIO-CIRUGIA-TORACICA:before {
+  content: "\41" !important;
+}
+.pdp-icon-cirugia-vascular:before,
+.SERVICIO-ANGIOLOGIA-Y-CIRUGIA-VASCULAR:before,
+.SERVICIO-CIRUGIA-VASCULAR-EXTERNA:before {
+  content: "\42" !important;
+}
+.pdp-icon-columna:before {
+  content: "\e037" !important;
+}
+.pdp-icon-comer:before {
+  content: "\43" !important;
+}
+.pdp-icon-configurar:before {
+  content: "\44" !important;
+}
+.pdp-icon-cuerpo-musculos:before,
+.SERVICIO-APARATO-LOCOMOTOR:before {
+  content: "\e045" !important;
+}
+.pdp-icon-cuerpo-esqueleto:before {
+  content: "\e046" !important;
+}
+.pdp-icon-dentista:before {
+  content: "\45" !important;
+}
+.pdp-icon-dermatologia:before,
+.SERVICIO-DERMATOLOGIA-EXTERNA:before,
+.SERVICIO-DERMATOLOGIA-EL-CARMEN:before,
+.SERVICIO-DERMATOLOGIA:before,
+.SERVICIO-DERMATOLOGIA-CE:before {
+  content: "\46" !important;
+}
+.pdp-icon-devoluciones:before {
+  content: "\47" !important;
+}
+.pdp-icon-directorio:before {
+  content: "\e02b" !important;
+}
+.pdp-icon-discapacidad-intelectual:before {
+  content: "\e029" !important;
+}
+.pdp-icon-dolor:before,
+.SERVICIO-UNIDAD-DE-DOLOR:before,
+.SERVICIO-UNIDAD-DEL-DOLOR:before {
+  content: "\e04a" !important;
+}
+.pdp-icon-electrofisiologia:before {
+  content: "\48" !important;
+}
+.pdp-icon-email:before {
+  content: "\49" !important;
+}
+.pdp-icon-empleado:before {
+  content: "\e02c" !important;
+}
+.pdp-icon-endocrinologia:before,
+.SERVICIO-ENDOCRINOLOGIA-EL-CARMEN:before,
+.SERVICIO-ENDOCRINOLOGIA-PEDIATRICA:before,
+.SERVICIO-ENDOCRINOLOGIA-GINECOLOGICA:before,
+.SERVICIO-ENDOCRINOLOGIA:before,
+.SERVICIO-ENDOCRINOLOGIA-INFANTIL:before {
+  content: "\4a" !important;
+}
+.pdp-icon-enfermera:before {
+  content: "\4b" !important;
+}
+.pdp-icon-enfermero-e:before {
+  content: "\4c" !important;
+}
+.pdp-icon-estrella-de-la-vida:before {
+  content: "\e047" !important;
+}
+.pdp-icon-euros:before {
+  content: "\e02d" !important;
+}
+.pdp-icon-farmacia:before {
+  content: "\4d" !important;
+}
+.pdp-icon-farmacia-hospitalaria:before {
+  content: "\4e" !important;
+}
+.pdp-icon-femenino:before {
+  content: "\4f" !important;
+}
+.pdp-icon-fonendoscopio:before {
+  content: "\50" !important;
+}
+.pdp-icon-geriatria:before,
+.SERVICIO-GERIATRIA:before {
+  content: "\e04b" !important;
+}
+.pdp-icon-ginecologia:before,
+.SERVICIO-GINECOLOGIA-Y-OBSTETRICIA:before,
+.SERVICIO-OBSTETRICIA-Y-GINECOLOGIA:before,
+.SERVICIO-GINECOLOGIA:before,
+.SERVICIO-UNIDAD-GINECOLOGICA-DE-APOYO:before,
+.SERVICIO-UNIDAD-GINECOLOGICA-AMBULATORIA:before,
+.SERVICIO-GINECOLOGIA-CE:before,
+.SERVICIO-ONCOLOGIA-GINECOLOGICA:before,
+.SERVICIO-UNIDAD-SUELO-PELVICO:before {
+  content: "\51" !important;
+}
+.pdp-icon-gotas:before {
+  content: "\52" !important;
+}
+.pdp-icon-historia-clinica:before {
+  content: "\53" !important;
+}
+.pdp-icon-historia-clinica-sns:before {
+  content: "\54" !important;
+}
+.pdp-icon-hombre:before {
+  content: "\55" !important;
+}
+.pdp-icon-hombre2:before {
+  content: "\56" !important;
+}
+.pdp-icon-hombre-circle:before {
+  content: "\e01f" !important;
+}
+.pdp-icon-hospital:before {
+  content: "\57" !important;
+}
+.pdp-icon-huella:before {
+  content: "\e044" !important;
+}
+.pdp-icon-impresora:before {
+  content: "\58" !important;
+}
+.pdp-icon-indicador:before {
+  content: "\59" !important;
+}
+.pdp-icon-infeccion:before,
+.SERVICIO-UNIDAD-DE-ENFERMEDADES-INFECCIOSAS:before,
+.SERVICIO-MEDICINA-INFECCIOSA:before,
+.SERVICIO-MI-INFECCIOSAS:before,
+.SERVICIO-MI-INFECCIOSAS-2:before,
+.SERVICIO-INFECCIOSOS:before {
+  content: "\e038" !important;
+}
+.pdp-icon-iniciar-sesion:before {
+  content: "\5a" !important;
+}
+.pdp-icon-inicio:before {
+  content: "\30" !important;
+}
+.pdp-icon-inmunologia:before,
+.SERVICIO-INMUNOLOGIA-CLINICA:before,
+.SERVICIO-INMUNOLOGIA:before {
+  content: "\e04c" !important;
+}
+.pdp-icon-laboratorio:before {
+  content: "\e039" !important;
+}
+.pdp-icon-lapiz:before {
+  content: "\31" !important;
+}
+.pdp-icon-levantar:before {
+  content: "\32" !important;
+}
+.pdp-icon-login:before {
+  content: "\33" !important;
+}
+.pdp-icon-logo:before {
+  content: "\34" !important;
+}
+.pdp-icon-logout:before {
+  content: "\35" !important;
+}
+.pdp-icon-lugar:before {
+  content: "\36" !important;
+}
+.pdp-icon-lupa:before {
+  content: "\37" !important;
+}
+.pdp-icon-lupa-no-encontrado:before {
+  content: "\e025" !important;
+}
+.pdp-icon-maletin:before,
+.SERVICIO-ENFERMERIA:before,
+.SERVICIO-ENFERMERIA-HDQ:before,
+.SERVICIO-ENFERMERIA-HDQUIRURGICO:before,
+.SERVICIO-ENFERMERIA-URGENCIAS:before,
+.SERVICIO-ENFERMERIA-HDMEDICO:before,
+.SERVICIO-ENFERMERIA-CEX:before,
+.SERVICIO-ENFERMERIA-HOSPITALIZACION:before,
+.SERVICIO-DIRECCION-DE-ENFERMERIA:before {
+  content: "\38" !important;
+}
+.pdp-icon-masculino:before {
+  content: "\39" !important;
+}
+.pdp-icon-medicamentos:before {
+  content: "\21" !important;
+}
+.pdp-icon-medicina-interna:before,
+.SERVICIO-MEDICINA-INTERNA:before,
+.SERVICIO-MEDICINA-INTERNA-2:before,
+.SERVICIO-SERVICIO-MEDICINA-INTERNA-ARRIXACA:before {
+  content: "\22" !important;
+}
+.pdp-icon-medicina-nuclear:before,
+.SERVICIO-MEDICINA-NUCLEAR:before {
+  content: "\23" !important;
+}
+.pdp-icon-medico:before {
+  content: "\24" !important;
+}
+.pdp-icon-medico1:before {
+  content: "\e01e" !important;
+}
+.pdp-icon-medico2:before {
+  content: "\e01d" !important;
+}
+.pdp-icon-medico-general:before {
+  content: "\25" !important;
+}
+.pdp-icon-medico-m:before {
+  content: "\26" !important;
+}
+.pdp-icon-medico-urgencias:before {
+  content: "\27" !important;
+}
+.pdp-icon-menu:before {
+  content: "\28" !important;
+}
+.pdp-icon-menu-der:before {
+  content: "\29" !important;
+}
+.pdp-icon-menu-izq:before {
+  content: "\2a" !important;
+}
+.pdp-icon-menu-sin:before {
+  content: "\2b" !important;
+}
+.pdp-icon-microbiologia:before,
+.SERVICIO-MICROBIOLOGIA-Y-PARASITOLOGIA:before,
+.SERVICIO-MICROBIOLOGIA:before {
+  content: "\2c" !important;
+}
+.pdp-icon-mujer:before {
+  content: "\2d" !important;
+}
+.pdp-icon-mujer2:before {
+  content: "\2e" !important;
+}
+.pdp-icon-mujer-circle:before {
+  content: "\e020" !important;
+}
+.pdp-icon-neonato:before,
+.SERVICIO-NEONATOLOGIA:before,
+.SERVICIO-NEONATOS:before,
+.SERVICIO-UCI-NEONATAL:before,
+.SERVICIO-PRENATAL:before,
+.SERVICIO-UNIDAD-DE-MEDICINA-MATERNOFETAL:before,
+.SERVICIO-URGENCIAS-DEL-HOSPITAL-MATERNAL:before,
+.SERVICIO-MATERNIDAD:before {
+  content: "\e03a" !important;
+}
+.pdp-icon-neonato-eco:before {
+  content: "\e03b" !important;
+}
+.pdp-icon-neonato-feto:before {
+  content: "\e03c" !important;
+}
+.pdp-icon-neumologia:before,
+.SERVICIO-NEUMOLOGIA-INFANTIL:before,
+.SERVICIO-NEUMOLOGIA:before,
+.SERVICIO-NEUMOLOGIA-PEDIATRICA:before {
+  content: "\2f" !important;
+}
+.pdp-icon-neurocirugia:before,
+.SERVICIO-NEUROCIRUGIA-C-CONCERTADO:before,
+.SERVICIO-NEUROCIRUGIA-INFANTIL:before,
+.SERVICIO-NEUROCIRUGIA:before {
+  content: "\3a" !important;
+}
+.pdp-icon-neurofisiologia:before,
+.SERVICIO-NEUROFISIOLOGIA-CC:before,
+.SERVICIO-NEUROFISIOLOGIA-CLINICA:before,
+.SERVICIO-NEUROFISIOLOGIA-CCONCERTADOS:before,
+.SERVICIO-NEUROFISIOLOGIA:before {
+  content: "\3b" !important;
+}
+.pdp-icon-neurologia:before,
+.SERVICIO-NEUROLOGIA-PEDIATRICA:before,
+.SERVICIO-NEUROLOGIA:before,
+.SERVICIO-NEUROPEDIATRIA:before {
+  content: "\3c" !important;
+}
+.pdp-icon-neurorradiologia:before {
+  content: "\3d" !important;
+}
+.pdp-icon-nutricion-dietetica:before,
+.SERVICIO-NUTRICION:before,
+.SERVICIO-DIETETICA-Y-NUTRICION:before {
+  content: "\3e" !important;
+}
+.pdp-icon-oftalmologia:before,
+.SERVICIO-OFTALMOLOGIA-MOLINA:before,
+.SERVICIO-OFTALMOLOGIA-CE:before,
+.SERVICIO-OFTALMOLOGIA-JUMILLA:before,
+.SERVICIO-OFTALMOLOGIA-INFANTIL:before,
+.SERVICIO-OFTALMOLOGIA-STA-ROSA:before,
+.SERVICIO-OFTALMOLOGIA-EL-CARMEN:before,
+.SERVICIO-OFTALMOLOGIA-H-REINA-SOFIA:before,
+.SERVICIO-OFTALMOLOGIA:before {
+  content: "\3f" !important;
+}
+.pdp-icon-oncologia-medica:before,
+.SERVICIO-ONCOLOGIA-MEDICA:before,
+.SERVICIO-ONCOLOGIA-INFANTIL:before,
+.SERVICIO-ONCOLOGIA:before,
+.SERVICIO-ONCOLOGIA-U-DE-CUIDADOS-PALIATIVOS:before { 
+  content: "\40" !important;
+}
+.pdp-icon-oncologia-radioterapica:before,
+.SERVICIO-ONCOLOGIA-RADIOTERAPICA:before {
+  content: "\5b" !important;
+}
+.pdp-icon-ordenar:before {
+  content: "\5d" !important;
+}
+.pdp-icon-otorrinolaringologia:before,
+.SERVICIO-OTORRINOLARINGOLOGIA-CE:before,
+.SERVICIO-OTORRINOLARINGOLOGIA:before,
+.SERVICIO-OTORRINOLARINGOLOGIA-INFANTIL:before {
+  content: "\5e" !important;
+}
+.pdp-icon-papel-descargar:before {
+  content: "\5f" !important;
+}
+.pdp-icon-papel-digital:before {
+  content: "\60" !important;
+}
+.pdp-icon-papel-pdf:before {
+  content: "\7b" !important;
+}
+.pdp-icon-password:before {
+  content: "\7c" !important;
+}
+.pdp-icon-pecho:before,
+.SERVICIO-UNIDAD-DE-MAMA:before {
+  content: "\e049" !important;
+}
+.pdp-icon-pediatria:before,
+.SERVICIO-UCI-PEDIATRICA:before,
+.SERVICIO-PEDIATRIA:before,
+.SERVICIO-CIRUGIA-PEDIATRICA:before {
+  content: "\7d" !important;
+}
+.pdp-icon-placa-de-petri:before {
+  content: "\e043" !important;
+}
+.pdp-icon-podologia:before {
+  content: "\7e" !important;
+}
+.pdp-icon-premio:before {
+  content: "\5c" !important;
+}
+.pdp-icon-prioridad-alta:before,
+.pdp-icon-prioridad-Alta:before,
+.pdp-icon-prioridad-ALTA:before,
+.pdp-icon-prioridad-urgente:before,
+.pdp-icon-prioridad-Urgente:before,
+.pdp-icon-prioridad-URGENTE:before {
+  content: "\e031" !important;
+}
+.pdp-icon-prioridad-baja:before,
+.pdp-icon-prioridad-Baja:before,
+.pdp-icon-prioridad-BAJA:before,
+.pdp-icon-prioridad-normal:before,
+.pdp-icon-prioridad-Normal:before,
+.pdp-icon-prioridad-NORMAL:before {
+  content: "\e032" !important;
+}
+.pdp-icon-prioridad-media:before,
+.pdp-icon-prioridad-Media:before,
+.pdp-icon-prioridad-MEDIA:before,
+.pdp-icon-prioridad-preferente:before,
+.pdp-icon-prioridad-Preferente:before,
+.pdp-icon-prioridad-PREFERENTE:before {
+  content: "\e033" !important;
+}
+.pdp-icon-prioridad-desconocida:before,
+.pdp-icon-prioridad-Desconocida:before,
+.pdp-icon-prioridad-DESCONOCIDA:before {
+  content: "" !important;
+}
+.pdp-icon-psicologia:before,
+.SERVICIO-PSICOLOGIA-CLINICA:before,
+.SERVICIO-PSICOLOGIA-INFANTIL:before,
+.SERVICIO-PSICOLOGIA:before,
+.SERVICIO-SALUD-MENTAL-DROGODEPENDENCIA:before {
+  content: "\e000" !important;
+}
+.pdp-icon-psiquiatria:before,
+.SERVICIO-PSIQUIATRIA:before,
+.SERVICIO-PSQUIATRIA-MOLINA:before,
+.SERVICIO-PSIQUIATRIA-CIEZA:before,
+.SERVICIO-PSIQUIATRIA-HGU:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS-YECLA:before,
+.SERVICIO-SALUD-MENTAL-MULA-INFANTIL:before,
+.SERVICIO-SALUD-MENTAL-INFANTIL-JUMILLA:before,
+.SERVICIO-SALUD-MENTAL-INFANTIL:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS:before,
+.SERVICIO-SALUD-MENTAL-INFANTIL-CARAVACA:before,
+.SERVICIO-UNIDAD-SALUD-MENTAL--ALCANTARILLA:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS-MULA:before,
+.SERVICIO-SALUD-MENTAL-INFANTIL-YECLA:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS-CARAVACA:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS-LORCA:before,
+.SERVICIO-SALUD-MENTAL-INFANTIL-LORCA:before,
+.SERVICIO-SALUD-MENTAL-ADULTOS-JUMILLA:before,
+.SERVICIO-UNIDAD-DE-DEMENCIAS:before {
+  content: "\e001" !important;
+}
+.pdp-icon-puerta-urgencias:before {
+  content: "\e002" !important;
+}
+.pdp-icon-qr:before {
+  content: "\e022" !important;
+}
+.pdp-icon-radiactividad:before,
+.SERVICIO-RADIOTERAPIA-CC:before {
+  content: "\e004" !important;
+}
+.pdp-icon-radiodiagnostico:before,
+.SERVICIO-RADIODIAGNOSTICO-DE-JUMILLA:before,
+.SERVICIO-RADIODIAGNOSTICO:before,
+.SERVICIO-RADIODIAGNOSTICO-C-CONCERTADOS:before,
+.SERVICIO-RADIODIAGNOSTICO-CONCERTADOS:before,
+.SERVICIO-RADIODIAGNOSTICO-CAMION:before,
+.SERVICIO-RADIODIAGNOSTICOCC:before,
+.SERVICIO-RADIODIAGNOSTICO-EL-CARMEN:before,
+.SERVICIO-RADIODIAGNOSTICO-INFANTIL:before,
+.SERVICIO-RADIODIAGNOSTICO-CM:before,
+.SERVICIO-RADIODIAGNOSTICO-MATERNAL:before {
+  content: "\e005" !important;
+}
+.pdp-icon-radiografia:before,
+.SERVICIO-RADIOLOGIA-HGU:before,
+.SERVICIO-RADIOLOGIA-CE:before,
+.SERVICIO-RADIOLOGIA:before {
+  content: "\e006" !important;
+}
+.pdp-icon-radiologia-intervencionista:before {
+  content: "\e007" !important;
+}
+.pdp-icon-rayos-x:before {
+  content: "\e008" !important;
+}
+.pdp-icon-recetas:before {
+  content: "\e02f" !important;
+}
+.pdp-icon-receta-digital:before {
+  content: "\e009" !important;
+}
+.pdp-icon-rehabilitacion:before {
+  content: "\e00a" !important;
+}
+.pdp-icon-rehabilitando:before,
+.SERVICIO-REHABILITACION-CSM-CARAVACA:before,
+.SERVICIO-REHABILITACION-LORCA:before,
+.SERVICIO-REHABILITACION:before,
+.SERVICIO-FISIOTERAPIA:before {
+  content: "\e03d" !important;
+}
+.pdp-icon-representacion-digital:before {
+  content: "\e00b" !important;
+}
+.pdp-icon-reumatologia:before,
+.SERVICIO-REUMATOLOGIA:before,
+.SERVICIO-REUMATOLOGIA-EL-CARMEN:before,
+.SERVICIO-REUMATOLOGIA-INFANTIL:before {
+  content: "\e00c" !important;
+}
+.pdp-icon-sexo-desconocido:before {
+  content: "\e023" !important;
+}
+.pdp-icon-sexo-trans:before {
+  content: "\e024" !important;
+}
+.pdp-icon-silla-ruedas:before {
+  content: "\e042" !important;
+}
+.pdp-icon-sintrom:before {
+  content: "\e003" !important;
+}
+.pdp-icon-servicio-de-urgencias:before,
+.SERVICIO-URGENCIAS:before {
+  content: "\e00d" !important;
+}
+.pdp-icon-sms:before {
+  content: "\e00e" !important;
+}
+.pdp-icon-sobre:before {
+  content: "\e00f" !important;
+}
+.pdp-icon-soporte:before {
+  content: "\e02a" !important;
+}
+.pdp-icon-sueno:before ,
+.SERVICIO-UNIDAD-TRASTORNO-RESPIRATORIO-DEL-SUEÑO:before ,
+.SERVICIO-UNIDAD-DEL-SUEÑO:before  {
+  content: "\e03e" !important;
+}
+.pdp-icon-telefono:before {
+  content: "\e010" !important;
+}
+.pdp-icon-tirita:before {
+  content: "\e03f" !important;
+}
+.pdp-icon-tramite:before {
+  content: "\e011" !important;
+}
+.pdp-icon-trastornos-alimentarios:before,
+.SERVICIO-U-TRASTORNOS-ALIMENTARIOS:before {
+  content: "\e040" !important;
+}
+.pdp-icon-traumatismo:before,
+.SERVICIO-TRAUMATOLOGIA-EL-CARMEN:before,
+.SERVICIO-TRAUMATOLOGIA:before,
+.SERVICIO-TRAUMATOLOGIA-CE:before,
+.SERVICIO-TRAUMATOLOGIA-STA-ROSA:before,
+.SERVICIO-TRAUMATOLOGIA-INFANTIL:before {
+  content: "\e041" !important;
+}
+.pdp-icon-unidad-cuidados-intensivos:before,
+.SERVICIO-UNIDAD-CUIDADOS-PALIATIVOS-CONSULTA:before,
+.SERVICIO-CUIDADOS-PALIATIVOS:before,
+.SERVICIO-UNIDAD-DE-CUIDADOS-PALIATIVOS:before,
+.SERVICIO-MEDICINA-INTENSIVA:before {
+  content: "\e012" !important;
+}
+.pdp-icon-unidad-de-dialisis:before,
+.SERVICIO-DIALISIS:before {
+  content: "\e013" !important;
+}
+.pdp-icon-unidad-hematologia-clinica-hemoterapia:before,
+.SERVICIO-HEMATOLOGIA:before,
+.SERVICIO-BANCO-DE-SANGRE:before,
+.SERVICIO-LABORATORIO-HEMATOLOGIA:before,
+.SERVICIO-HEMATOLOGIA-LABORATORIO:before,
+.SERVICIO-HEMATOLOGIA-CLINICA:before {
+  content: "\e014" !important;
+}
+.pdp-icon-unidad-hemodinamica:before,
+.SERVICIO-HEMODIALISIS:before,
+.SERVICIO-HEMODIALISIS-INFANTIL:before {
+  content: "\e015" !important;
+}
+.pdp-icon-urologia:before,
+.SERVICIO-UROLOGIA:before,
+.SERVICIO-UROLOGIA-CE:before,
+.SERVICIO-UROLOGIA-MOLINA:before,
+.SERVICIO-UROLOGIA-EL-CARMEN:before,
+.SERVICIO-UROLOGIA-HGU:before,
+.SERVICIO-NEFROLOGIA-HGU:before,
+.SERVICIO-NEFROLOGIA:before,
+.SERVICIO-NEFROLOGIA-INFANTIL:before,
+.SERVICIO-NEFROLOGIA-PEDIATRICA:before {
+  content: "\e016" !important;
+}
+.pdp-icon-usuario:before {
+  content: "\e017" !important;
+}
+.pdp-icon-usuario2:before {
+  content: "\e018" !important;
+}
+.pdp-icon-usuario-circle:before {
+  content: "\e021" !important;
+}
+.pdp-icon-usuario-crear:before {
+  content: "\e019" !important;
+}
+.pdp-icon-usuario-digital:before {
+  content: "\e01a" !important;
+}
+.pdp-icon-usuarios:before {
+  content: "\e01b" !important;
+}
+.pdp-icon-usuarios2:before {
+  content: "\e01c" !important;
+}
+.pdp-icon-visado:before {
+  content: "\e02e" !important;
+}
+
+/* SEXO */
+
+.pdp-icon-persona:before {
+  content: "\e017" !important; /* .pdp-icon-usuario */
+}
+.pdp-icon-persona.H:before {
+  content: "\55" !important; /* .pdp-icon-hombre */
+}
+.pdp-icon-persona.M:before {
+  content: "\2d" !important; /* .pdp-icon-mujer */
+}
+.pdp-icon-persona.T:before { 
+  content: "\e024" !important; /* .pdp-icon-sexo-trans */
+}
+.pdp-icon-sexo:before {
+	content: "\e023" !important; /* .pdp-icon-sexo-desconocido */
+}
+.pdp-icon-sexo.H:before { 
+  content: "\39" !important; /* .pdp-icon-masculino */
+}
+.pdp-icon-sexo.M:before { 
+  content: "\4f" !important; /* .pdp-icon-femenino */
+}
+.pdp-icon-sexo.T:before {
+  content: "\e024" !important; /* .pdp-icon-sexo-trans */
+}
+
+/* APLICACIONES */
+
+.aplicacion.citaMedica:before,
+.app.citaMedica .icono:before { 
+	content: "\6a" !important;  /* .pdp-icon-calendario */
+}
+.aplicacion.historiaClinica:before,
+.app.historiaClinica .icono:before { 
+	content: "\53" !important;  /* .pdp-icon-historia-clinica */
+}
+.aplicacion.hcdsns:before,
+.app.hcdsns .icono:before { 
+	content: "\54" !important;  /* .pdp-icon-historia-clinica-sns */
+}
+.aplicacion.devoluciones:before,
+.app.devoluciones .icono:before { 
+	content: "\47" !important;  /* .pdp-icon-devoluciones */
+}
+.aplicacion.notificaCiudadano:before,
+.app.notificaCiudadano .icono:before { 
+	content: "\67" !important;  /* .pdp-icon-arroba */
+}
+.aplicacion.visorrecetae:before,
+.app.visorrecetae .icono:before { 
+	content: "\e009" !important;  /* .pdp-icon-receta-digital */
+}
+.aplicacion.consultaMedica:before,
+.app.consultaMedica .icono:before { 
+	content: "\70" !important;  /* .pdp-icon-chat */
+}
+.aplicacion.visortao:before,
+.app.visortao .icono:before { 
+	content: "\e003" !important;  /* .pdp-icon-sintrom */
+}
+
+#aplicaciones .representacionDigital:before {
+	content: "\e00b" !important; /* .pdp-icon-representacion-digital */
+}
+#aplicaciones .certificadoDigital:before {
+	content: "\6f" !important; /* .pdp-icon-certificado */ 
+}
+
+/* CHATS */
+
+.pdp-icon-mensaje-sin-contestar:before {
+	content: "\73" !important; /* .pdp-icon-chat-pregunta */ 
+}
+.pdp-icon-mensaje-pendiente:before {
+	content: "\72" !important; /* .pdp-icon-chat-ocupado */ 
+}
+.pdp-icon-mensaje-leido:before {
+	content: "\74" !important; /* .pdp-icon-chat-respuesta */ 
+}
+
+/* --- */

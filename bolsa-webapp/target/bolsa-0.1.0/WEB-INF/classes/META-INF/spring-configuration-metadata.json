@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "es.sms.datasource.acceso",
+      "type": "javax.sql.DataSource",
+      "sourceType": "es.sms.bolsa.config.DataSourceConfig",
+      "sourceMethod": "accesoDatasource()"
+    },
+    {
+      "name": "es.sms.datasource.boltra",
+      "type": "javax.sql.DataSource",
+      "sourceType": "es.sms.bolsa.config.BoltraDataSourceConfig",
+      "sourceMethod": "boltraDbDataSource()"
+    },
+    {
+      "name": "steria.reports",
+      "type": "es.sms.bolsa.view.oracle.ReportProperties",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "steria.reports.directorio",
+      "type": "java.lang.String",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    },
+    {
+      "name": "steria.reports.server",
+      "type": "java.lang.String",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    },
+    {
+      "name": "steria.reports.user-id",
+      "type": "java.lang.String",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    },
+    {
+      "name": "steria.reports.web-c-g-i",
+      "type": "java.lang.String",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    },
+    {
+      "name": "steria.reports.web-server",
+      "type": "java.lang.String",
+      "sourceType": "es.sms.bolsa.view.oracle.ReportProperties"
+    }
+  ],
+  "hints": []
+}

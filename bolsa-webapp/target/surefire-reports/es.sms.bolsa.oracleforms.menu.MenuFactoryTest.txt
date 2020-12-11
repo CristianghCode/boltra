@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: es.sms.bolsa.oracleforms.menu.MenuFactoryTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.338 s <<< FAILURE! - in es.sms.bolsa.oracleforms.menu.MenuFactoryTest
+seRecuperanOpcionesDeMenuAsociadaAlUsuarioLogado(es.sms.bolsa.oracleforms.menu.MenuFactoryTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [es.sms.bolsa.view.MenuManagedBean] from ClassLoader [sun.misc.Launcher$AppClassLoader@a57993]
+Caused by: java.lang.NoClassDefFoundError: LMenuModel;
+Caused by: java.lang.ClassNotFoundException: MenuModel
+

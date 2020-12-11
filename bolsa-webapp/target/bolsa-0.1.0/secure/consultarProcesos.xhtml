@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:metadata>
+	<f:viewAction action="#{procesoManagedBean.init}" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+
+			<h:form>
+				<h:panelGroup layout="block" styleClass="contenidoCentrado"
+					style="padding:20px;">
+					<h:panelGroup layout="block" styleClass="lineaForm radioButtons"
+						id="filtros" style="padding: 10px 0px;">
+						<p:selectOneRadio id="tipoBusqueda" style="display:inline-block"
+							value="#{procesoManagedBean.tipoBusqueda}">
+							<p:ajax event="change"
+								update="@form"
+								global="false"
+								listener="#{procesoManagedBean.tipoBusquedaChanged}">
+							</p:ajax>
+							<f:selectItem itemLabel="Procesos lanzados por mi"
+								itemValue="misProcesos" />
+							<f:selectItem itemLabel="Proceso" itemValue="proceso" />
+						</p:selectOneRadio>
+						<p:selectOneMenu id="tiposProceso"
+							rendered="#{not procesoManagedBean.misProcesos}"
+							value="#{procesoManagedBean.tipoProcesoSelected}"
+							style="width:300px; display:inline-block; margin-left:15px; margin-top:-4px;"
+							converter="omnifaces.SelectItemsConverter">
+							<f:selectItem noSelectionOption="true"
+								itemLabel="Seleccione un valor"></f:selectItem>
+							<f:selectItems value="#{procesoManagedBean.tiposProceso}"
+								var="tipo" itemLabel="#{tipo.descripcion}" itemValue="#{tipo}" />
+							<p:ajax event="change" update="@form" process="@this"
+								listener="#{procesoManagedBean.tipoProcesoChanged}">
+							</p:ajax>
+						</p:selectOneMenu>
+					</h:panelGroup>
+
+					<h:panelGroup
+						rendered="#{not empty procesoManagedBean.procesosTipoInforme}">
+						<h3>Informes</h3>
+					</h:panelGroup>
+					<f:subview id="informes">
+						<p:dataTable id="procesosDataTableInformes"
+							rendered="#{not empty procesoManagedBean.procesosTipoInforme}"
+							value="#{procesoManagedBean.procesosTipoInforme}" var="proceso"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							currentPageReportTemplate="{totalRecords} resultados encontrados"
+							paginator="true" paginatorPosition="bottom"
+							paginatorAlwaysVisible="true" rows="10" rowIndexVar="rowIndex"
+							styleClass="filtrosOcultos" style="min-width: 810px;"
+							emptyMessage="Sin resultados">
+
+							<p:column id="id"
+								headerText="#{msg['es.sms.proceso.id']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{proceso.id}">
+								</h:outputText>
+							</p:column>
+
+							<p:column id="descripcion"
+								headerText="#{msg['es.sms.proceso.descripcion']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{proceso.descripcion}">
+									<f:convertDateTime pattern="dd/MM/yyyy" type="date"
+										timeZone="Europe/Paris" locale="es_ES" />
+								</h:outputText>
+							</p:column>
+							<p:column id="usuario"
+								headerText="#{msg['es.sms.proceso.login']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{proceso.login}">
+								</h:outputText>
+							</p:column>
+							<p:column id="fechaInicio"
+								headerText="#{msg['es.sms.proceso.fechaLanzamiento']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{proceso.fechaLanzamiento}">
+									<f:convertDateTime pattern="dd/MM/yyyy HH:mm" type="date"
+										timeZone="Europe/Paris" locale="es_ES" />
+								</h:outputText>
+							</p:column>
+
+							<p:column id="estado"
+								headerText="#{msg['es.sms.proceso.estado']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{proceso.estado}">
+								</h:outputText>
+							</p:column>
+
+							<p:column id="informe"
+								headerText="#{msg['es.sms.proceso.informe']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<p:commandLink id="accion-imprimir" 
+									value="#{proceso.nombreReport}"
+									styleClass="acciones-tabla__accion" process="@this"
+									ajax="false">
+									<p:fileDownload
+										value="#{procesoManagedBean.getFichero(proceso)}" />
+								</p:commandLink>
+							</p:column>
+
+							<p:column id="acciones"
+								headerText="#{msg['es.sms.proceso.informe']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<p:commandLink id="accion-imprimirr" rendered="#{proceso.tieneFichero()}"
+									styleClass="acciones-tabla__accion" process="@this"
+									ajax="false">
+									<b:iconAwesome name="print" />
+									<p:fileDownload
+										value="#{procesoManagedBean.getFichero(proceso)}" />
+								</p:commandLink>
+
+								<p:commandLink id="accion-delete" style="margin-left:5px;"
+									styleClass="acciones-tabla__accion" process="@this"
+									actionListener="#{procesoManagedBean.eliminar(proceso)}"
+									update="@form">
+									<b:iconAwesome name="trash-o" />
+									<p:confirm header="¿Desea continuar?"
+										message="El Informe se eliminará del sistema"
+										icon="ui-icon-alert" />
+								</p:commandLink>
+							</p:column>
+
+						</p:dataTable>
+					</f:subview>
+					<h:panelGroup
+						rendered="#{not empty procesoManagedBean.procesosTipoProceso}">
+						<h3>Procesos</h3>
+					</h:panelGroup>
+					<p:dataTable id="procesosDataTableProcesos"
+						rendered="#{not empty procesoManagedBean.procesosTipoProceso}"
+						value="#{procesoManagedBean.procesosTipoProceso}" var="proceso"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						currentPageReportTemplate="{totalRecords} resultados encontrados"
+						paginator="true" paginatorPosition="bottom"
+						paginatorAlwaysVisible="true" rows="10" rowIndexVar="rowIndex"
+						styleClass="filtrosOcultos" style="min-width: 810px;"
+						emptyMessage="Sin resultados">
+
+						<p:column id="id"
+							headerText="#{msg['es.sms.proceso.id']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{proceso.id}">
+							</h:outputText>
+						</p:column>
+
+						<p:column id="descripcion"
+							headerText="#{msg['es.sms.proceso.descripcion']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{proceso.descripcion}">
+								<f:convertDateTime pattern="dd/MM/yyyy" type="date"
+									timeZone="Europe/Paris" locale="es_ES" />
+							</h:outputText>
+						</p:column>
+						<p:column id="usuario"
+							headerText="#{msg['es.sms.proceso.login']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{proceso.login}">
+							</h:outputText>
+						</p:column>
+						<p:column id="fechaInicio"
+							headerText="#{msg['es.sms.proceso.fechaLanzamiento']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{proceso.fechaLanzamiento}">
+								<f:convertDateTime pattern="dd/MM/yyyy HH:mm" type="date"
+									timeZone="Europe/Paris" locale="es_ES" />
+							</h:outputText>
+						</p:column>
+
+						<p:column id="estado"
+							headerText="#{msg['es.sms.proceso.estado']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<h:outputText value="#{proceso.estado}">
+							</h:outputText>
+						</p:column>
+
+						<p:column id="informe"
+							headerText="#{msg['es.sms.proceso.informe']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<p:commandLink id="accion-imprimir"
+								value="#{proceso.nombreReport}"
+								styleClass="acciones-tabla__accion" process="@this" ajax="false">
+								<p:fileDownload
+									value="#{procesoManagedBean.getFichero(proceso)}" />
+							</p:commandLink>
+						</p:column>
+
+						<p:column id="acciones"
+							headerText="#{msg['es.sms.proceso.acciones']}"
+							styleClass="txt--centrado" style="width: 60px;">
+							<p:commandLink id="accion-imprimirr" rendered="#{proceso.tieneFichero()}"
+								styleClass="acciones-tabla__accion" process="@this" ajax="false">
+								<b:iconAwesome name="print" />
+								<p:fileDownload
+									value="#{procesoManagedBean.getFichero(proceso)}" />
+							</p:commandLink>
+
+							<p:commandLink id="accion-delete" style="margin-left:5px;"
+								actionListener="#{procesoManagedBean.eliminar(proceso)}"
+								update="@form" styleClass="acciones-tabla__accion"
+								process="@this">
+								<b:iconAwesome name="trash-o" />
+								<p:confirm header="¿Desea continuar?"
+									message="El Informe se eliminará del sistema"
+									icon="ui-icon-alert" />
+							</p:commandLink>
+						</p:column>
+					</p:dataTable>
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

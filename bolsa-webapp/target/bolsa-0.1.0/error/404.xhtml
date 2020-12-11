@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+			<b:column col-sm="12">
+				<h:form id="loginForm" styleClass="panel">
+					<h1>
+						<h:outputText value="#{msg['error.recurso.no.existe']}" />
+					</h1>
+					<p>
+						<h:outputLink value="#{layoutManagedBean.contexto}" title="Inicio" styleClass="home">
+							<h:outputText value="#{msg['mensaje.volver.pagina.inicio']}" />
+						</h:outputLink>
+					</p>
+				</h:form>
+			</b:column>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
+
+
+
+

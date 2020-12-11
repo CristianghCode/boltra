@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<body>
+	<ui:composition>
+		<p:panel id="mensajes" styleClass="mensajes">
+			<p:messages globalOnly="true" escape="false" closable="true">
+				<p:effect type="drop" event="load" speed="500">
+					<f:param name="direction" value="'down'" />
+					<f:param name="mode" value="'show'" />
+				</p:effect>
+				<p:effect type="drop" event="load" delay="10000">
+					<f:param name="direction" value="'down'" />
+				</p:effect>
+				<p:autoUpdate />
+			</p:messages>
+		</p:panel>
+	</ui:composition>
+</body>
+</html>

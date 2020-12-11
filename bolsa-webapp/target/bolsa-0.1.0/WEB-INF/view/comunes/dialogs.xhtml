@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<h:form id="dialogsForm" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" style="font-size: 0.7em;">
+
+	<p:confirmDialog id="confirmDialogVar" widgetVar="confirmDialogVar" global="true" 
+		severity="alert" closeOnEscape="true" appendTo="@(body)" width="420">
+		<div class="txt--centrado">
+			<p:commandButton value="Aceptar"
+				type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Cancelar"
+				type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</div>
+	</p:confirmDialog>
+
+	<p:idleMonitor  onactive="PF('sessionTimeOutDialog').show();"
+		timeout="#{session.maxInactiveInterval * 1000}" />
+	<p:dialog widgetVar="sessionTimeOutDialog"
+		header="Su sesión ha expirado" modal="true" fixedCenter="true"
+		draggable="false" resizable="false" closable="false" width="400"
+		visible="false">
+		<div style="margin: 20px 0;">
+			<span><h:outputText
+					value="#{msg['login.session.caducada']}" /></span>
+		</div>
+		<input id="confirmBackToLogin" type="button" value="Cerrar"
+			style="float: right;" class="estiloBotonDegradado"
+			onclick="window.location='#{facesContext.externalContext.requestContextPath}/home.xhtml';" />
+	</p:dialog>
+	<p:ajaxStatus onstart="PF('estadoOperacionDialog').show();"
+		oncomplete="PF('estadoOperacionDialog').hide();" />
+
+	<p:dialog widgetVar="estadoOperacionDialog"
+		header="#{msg['ajax.procesando.mensaje.titulo']}"
+		modal="true" fixedCenter="true" draggable="false" closable="true"
+		resizable="false">
+		<div style="margin-bottom: 20px;">
+			<span><h:outputText
+					value="#{msg['ajax.procesando.mensaje']}" /></span>
+		</div>
+		<div class="txt--centrado">
+			<p:graphicImage styleClass="fountainGif" value="#{resource['sms/img/ajaxloadingbar.gif']}" />
+			<div id="fountainG">
+				<div id="fountainG_1" class="fountainG"></div>
+				<div id="fountainG_2" class="fountainG"></div>
+				<div id="fountainG_3" class="fountainG"></div>
+				<div id="fountainG_4" class="fountainG"></div>
+				<div id="fountainG_5" class="fountainG"></div>
+				<div id="fountainG_6" class="fountainG"></div>
+				<div id="fountainG_7" class="fountainG"></div>
+				<div id="fountainG_8" class="fountainG"></div>
+			</div>
+		</div>
+	</p:dialog>
+
+	<p:dialog widgetVar="ajaxErrorDialog"
+		header="#{msg['ajax.error.mensaje.titulo']}"
+		modal="true" fixedCenter="true" draggable="false" closable="true"
+		resizable="false">
+		<div style="margin: 20px 0;">
+			<span><h:outputText
+					value="#{msg['ajax.error.mensaje']}" /></span>
+		</div>
+		<h:commandButton value="Cerrar" onclick="PF('ajaxErrorDialog').hide()"
+			style="float:right;" class="estiloBotonDegradado" />
+	</p:dialog>
+
+</h:form>

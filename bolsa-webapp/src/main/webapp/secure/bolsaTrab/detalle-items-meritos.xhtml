@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+</h:head>
+
+	<body>
+		<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">	
+			<ui:define name="body">
+				<h:form id="aportaciones-meritos-form">
+					<p:panelGrid   columns="4" layout="grid"
+					columnClasses="ui-g-12 ui-md-6 ui-lg-3, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2, ui-g-12 ui-md-6 ui-lg-2"
+					style="margin-bottom:2%">
+		
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.meritos.item.codigo.merito']}" />
+					<p:inputText
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.codigoMerito}"
+						readonly="true" />
+		
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.puntuacion.apartados.descripcion']}" />
+					<p:inputText style="width: 100%; "
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.merito.denominacion}"
+						readonly="true" />
+						
+
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.puntuacion.apartados.cantidad.opositor']}" />
+					<p:inputText 
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.cantidadHoras}"
+						readonly="true" />
+		
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.puntuacion.apartados.puntuacion.opositor']}" />
+					<p:inputText
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.puntuacionTotalObtenida}"
+						readonly="true" />
+						
+						
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.puntuacion.apartados.cantidad.tribunal']}" />
+					<p:inputText 
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.cantidadHoras}"
+						readonly="true" />
+						
+					<p:outputLabel style="margin-left:5%"
+						value="#{msg['es.sms.aportacion.puntuacion.apartados.puntuacion.tribunal']}" />
+					<p:inputText
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.puntuacionTotalObtenida}"
+						readonly="true" />
+						
+					<p:outputLabel style="margin-left:5%; visibility:hidden"
+						value="#{msg['es.sms.aportacion.meritos.puntuacion.tope']}"/>
+					<p:inputText style="visibility:hidden"
+						value="#{detalleAportacionMeritosItemBean.punObtSeleccionado.merito.topePuntos}"
+						readonly="true"/>
+		
+
+
+						<p:commandButton value="Volver Atrás"
+						style="width:100%" 
+						id="btnVolverListado" process="@this"
+						actionListener="#{detalleAportacionMeritosItemBean.volverAtras()}" />
+					
+			
+					</p:panelGrid>
+					<p:dataTable id="tablaListadoMeritosAportadosItems" var="item"
+						widgetVar="item"
+						value="#{detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator}"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+						currentPageReportTemplate="{totalRecords} resultados encontrados"
+						rowKey="#{item.id}" emptyMessage="Sin resultados"
+						lazy="true" editMode="row" paginator="true" paginatorPosition="bottom" editable="true"
+						rowsPerPageTemplate="10,20,50"
+						paginatorAlwaysVisible="true" rows="10" style="min-width: 810px;"
+						selectionMode="single" rowIndexVar="index">		
+
+
+					
+						<p:column rendered="#{detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipo!=null}"
+						headerText="Editar Item"
+						styleClass="txt--centrado" style="width: 1%;" >
+							<h:panelGroup class="editbutton" id="editButtons">
+								<h:panelGroup rendered="#{!detalleAportacionMeritosItemBean.isItemEditing(index)}">
+									<p:commandButton disabled="#{detalleAportacionMeritosItemBean.editing}"  id="editarItem"  icon="fa fa-fw fa-pencil" style="box-shadow: none;"
+									actionListener="#{detalleAportacionMeritosItemBean.itemEdit(index,item.item.id)}"	update="@(.editbutton)   @(.row#{index})" >
+									</p:commandButton>
+								</h:panelGroup>
+								<h:panelGroup rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index)}">
+									<h:panelGrid  columns="2" cellpadding="5">
+							
+										<p:commandButton actionListener="#{detalleAportacionMeritosItemBean.editingAccept(index,item.item)}" icon="fa fa-fw fa-check" style="margin-right:20px;"    update="tablaListadoMeritosAportadosItems @(.row#{index})">
+
+									</p:commandButton>
+										<p:commandButton  actionListener="#{detalleAportacionMeritosItemBean.editingDecline(index,item.item.id)}" icon="fa fa-fw fa-times" style="margin-right:20px;"  update="@(.editbutton)  @(.row#{index})" />	
+									</h:panelGrid>				
+								</h:panelGroup>
+							</h:panelGroup>
+					
+						</p:column>	
+				
+
+						<p:column headerText="Ver Original" styleClass="txt--centrado"
+						style="width: 1%;">
+							<p:commandButton  actionListener="#{detalleAportacionMeritosItemBean.abrirDialogoItemOriginal(item.item)}" icon="fa fa-fw fa-file-o" style="margin-right:20px;"    update="item-original">
+							</p:commandButton>
+						</p:column>
+
+
+						<p:column headerText="Identificador" styleClass="txt--centrado"
+							style="width: 1%;">
+							<h:outputText value="#{item.id}" />			
+						</p:column>
+
+					
+					<p:columns rendered="#{detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipo!=null}" styleClass="txt--centrado"  value="#{detalleAportacionMeritosItemBean.getNameColumns()}" var="atributesName" columnIndexVar="colIndex" style="width: 1%;">
+						<f:facet name="header">
+							<h:outputText value="#{atributesName}" />
+						</f:facet>
+							<h:panelGroup   class="row#{index} editGroup" id="dinamica">
+								<h:panelGroup id="itemValue"  rendered="#{!detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex]!='DATE'}">
+									<h:outputText value="#{detalleAportacionMeritosItemBean.getAtributeColumnValue(item.item.id,colIndex)}" />
+								</h:panelGroup>	
+								<h:panelGroup id="itemValueDate"  rendered="#{!detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='DATE'}">
+									<h:outputText value="#{detalleAportacionMeritosItemBean.getAtributeColumnValue(item.item.id,colIndex)}" >
+										<f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+									</h:outputText>
+								</h:panelGroup>	
+								<h:panelGroup id="itemInput"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+										and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex]==null}">
+										<p:inputText value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}"/> 
+								</h:panelGroup>
+								<h:panelGroup id="itemInputDate"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='DATE'}">
+									<p:calendar  pattern="dd/MM/yyyy" id="event" value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}">
+									</p:calendar>
+								</h:panelGroup>	
+								<h:panelGroup id="itemInputInt"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='INT'}">
+									<p:inputNumber value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}" 
+									thousandSeparator="" decimalSeparator="." decimalPlaces="0"/>  
+									
+								</h:panelGroup>	
+								<h:panelGroup id="itemInputString"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='STRING_LIMIT_CHAR_2'}">
+									<p:inputText maxlength="2"   value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}"/> 
+								</h:panelGroup>	
+								<h:panelGroup id="itemInputString_5"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='STRING_LIMIT_CHAR_5'}">
+									<p:inputText maxlength="5"  value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}"/> 
+								</h:panelGroup>	
+								<h:panelGroup id="itemInpuString_1"  rendered="#{detalleAportacionMeritosItemBean.isItemEditing(index) 
+									and detalleAportacionMeritosItemBean.aportacionMeritosItemPaginator.tipodeDato[colIndex].toString()=='STRING_LIMIT_CHAR_1'}">
+									<p:inputText maxlength="1" value="#{detalleAportacionMeritosItemBean.valuesEdit[colIndex]}"/> 
+								</h:panelGroup>	
+							
+							</h:panelGroup>
+					</p:columns>	
+			
+						<p:column
+							headerText="#{msg['es.sms.aportacion.meritos.item.fecha.entrada.vigor']}"
+							styleClass="txt--centrado" style="width: 1%;">
+							<h:outputText value="#{item.merito.fechaEntradaVigor}">
+  								<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss"/>
+							</h:outputText>
+						</p:column>
+			
+						<p:column
+							headerText="#{msg['es.sms.aportacion.meritos.item.fecha.grabacion']}"
+							styleClass="txt--centrado" style="width: 1%;">
+							<h:outputText value="#{item.item.fechaGrabacion}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy HH:mm:ss"/>
+							</h:outputText>
+						</p:column>
+						<p:column class="situaciones" headerText="#{msg['es.sms.boltra.ver.actualizar.situacion']}"
+						styleClass=" txt--centrado"   style="width: 2%;">
+						<h:panelGroup>
+							<p:selectOneMenu  class="situacion{index}" id="situacion" value="#{detalleAportacionMeritosItemBean.arrayIdSituacion[index]}" style="width:200px">
+								<p:ajax listener="#{detalleAportacionMeritosItemBean.modificarSituacion(item,index)}" update="situacion"  />
+								<f:selectItems value="#{detalleAportacionMeritosItemBean.mapaSituacionId}" />
+							</p:selectOneMenu>
+							</h:panelGroup>
+						</p:column>	
+					
+						<p:column
+							headerText="#{msg['es.sms.aportacion.meritos.item.fichero.visualizar']}"
+							styleClass="txt--centrado" style="width: 1%;">
+							<p:commandButton  id="btnVisualizarDocumentacionMerito"  icon="fa fa-fw fa-eye" style="box-shadow: none;" disabled="#{not detalleAportacionMeritosItemBean.puedeDescargarFichero(item.item.fichero.nombreCarpeta)}"
+							update="pdf pdfMedia"  actionListener="#{PDFViewerBean.cargarFichero(item.item.fichero)}"	 >
+							</p:commandButton>
+							<p:tooltip  for="btnVisualizarDocumentacionMerito" value="visualizar documentación aportada en el mérito" position="right" />	
+						</p:column>	
+					</p:dataTable>
+				</h:form>
+				
+				<p:dialog  class="pdf-dialogo" id="pdf" width="80%"
+					widgetVar="pdf" resizable="false" responsive="true"
+					visible="false" scrollable="false" closable="true" closeOnEscape="true" draggable="false" header="VISOR DE PDF"
+					modal="true" >	
+					<p:media id="pdfMedia" cache="false" player="pdf" rendered="#{PDFViewerBean.rutaPDF!=NULL}" style="height: 85vh!important;" value="#{PDFViewerBean.tmpPDF}" width="100%" height="100%"/>
+				</p:dialog>
+
+				<p:dialog  id="item-original" width="50%"
+				widgetVar="item-original" resizable="false" responsive="true"
+				visible="false" scrollable="false" closable="true" closeOnEscape="true" draggable="false" header="ITEM ORIGINAL"
+				modal="true" >	
+				
+				<p:dataTable value="#{['array con una solo valor. Usado para que la tabla tenga una fila']}">
+					<row>
+						<p:columns styleClass="txt--centrado" id="valueItem"  value="#{detalleAportacionMeritosItemBean.getNameColumns()}" var="value"  columnIndexVar="colIndex" headerText="#{value}"  >
+							<h:panelGroup  rendered="#{detalleAportacionMeritosItemBean.arrayTipoMeritosItemOriginalSeleccionado!=null}">
+								<h:outputText value="#{detalleAportacionMeritosItemBean.arrayTipoMeritosItemOriginalSeleccionado[colIndex]}" />
+							</h:panelGroup>	
+						</p:columns>
+					</row>	
+				</p:dataTable>	
+			</p:dialog>	
+			</ui:define>
+		</ui:composition>
+	</body>
+</html>

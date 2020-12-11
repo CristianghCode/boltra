@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<body>
+	<ui:composition>
+		<div class="textoPie">
+			Servicio Murciano de Salud <h:outputText value="#{currentDate}">
+				<f:convertDateTime pattern="yyyy" type="date" timeZone="Europe/Paris" locale="es_ES" />
+			</h:outputText> | <a href="#{layoutManagedBean.contexto}"
+				title="#{msg['app.cabecera.enlace']}"> #{msg['app.cabecera.enlace']} </a> | Optimizado para <a
+				target="_blank" href="http://www.mozilla-europe.org/es/firefox/">Firefox</a>, 1024x768
+		</div>
+	</ui:composition>
+</body>
+</html>

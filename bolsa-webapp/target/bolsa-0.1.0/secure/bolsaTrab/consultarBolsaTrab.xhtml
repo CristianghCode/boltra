@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+		<ui:define name="body">
+
+			<h:form>
+					<h:panelGroup
+						rendered="#{not empty bolsaTrabManagedBean.listBolsaTrab}">
+						<h3>Bolsas de Trabajo</h3>
+					</h:panelGroup>
+					<f:subview id="informes">
+						<p:dataTable id="bolsaTrabDataTable"
+							rendered="#{not empty bolsaTrabManagedBean.listBolsaTrab}"
+							value="#{bolsaTrabManagedBean.listBolsaTrab}" var="bolsa"
+							paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+							currentPageReportTemplate="{totalRecords} resultados encontrados"
+							paginator="true" paginatorPosition="bottom"
+							paginatorAlwaysVisible="true" rows="10" rowIndexVar="rowIndex"
+							styleClass="filtrosOcultos" style="min-width: 810px;"
+							emptyMessage="Sin resultados">
+
+							<p:column id="codigo"
+								headerText="#{msg['es.sms.bolsatrabajo.codigo']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.codigo}">
+								</h:outputText>
+							</p:column>
+
+							<p:column id="descripcion"
+								headerText="#{msg['es.sms.bolsatrabajo.descripcion']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.descripcion}">
+								</h:outputText>
+							</p:column>
+							
+							<p:column id="descripcionCorta"
+								headerText="#{msg['es.sms.bolsatrabajo.descripcionCorta']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.descripcionCorta}">
+								</h:outputText>
+							</p:column>
+							
+							<p:column id="codigoOpcion"
+								headerText="#{msg['es.sms.bolsatrabajo.opcion']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.opcion.codigo}">
+								</h:outputText>
+							</p:column>
+							
+							<p:column id="categoria"
+								headerText="#{msg['es.sms.bolsatrabajo.categoria']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.opcion.categoria.descripcion}">
+								</h:outputText>
+							</p:column>
+							
+							<p:column id="grupo"
+								headerText="#{msg['es.sms.bolsatrabajo.grupo']}"
+								styleClass="txt--centrado" style="width: 60px;">
+								<h:outputText value="#{bolsa.opcion.categoria.grupo.descripcionAbreviada}">
+								</h:outputText>
+							</p:column>
+		
+							<p:column id="acciones"
+								headerText="#{msg['es.sms.proceso.informe']}"
+								styleClass="txt--centrado" style="width: 60px;">
+
+								<p:commandLink id="accion-delete" style="margin-left:5px;"
+									styleClass="acciones-tabla__accion" process="@this"
+									actionListener="#{bolsaTrabManagedBean.eliminar(bolsa)}"
+									update="@form">
+									<b:iconAwesome name="trash-o" />
+									<p:confirm header="¿Desea continuar?"
+										message="El Informe se eliminará del sistema"
+										icon="ui-icon-alert" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</f:subview>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

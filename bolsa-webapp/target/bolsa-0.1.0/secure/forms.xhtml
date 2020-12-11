@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags">
+<f:metadata>
+	<f:viewAction action="#{formController.init}" />
+</f:metadata>
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; ISO-8859-1" />
+</h:head>
+<body>
+	<ui:composition template="/WEB-INF/view/comunes/commonLayout.xhtml">
+	<ui:param name="estoyEnForms" value="true" />
+		<ui:define name="body">
+			<b:column col-sm="12">
+				<h:form id="loginForm" styleClass="panel">
+				<ui:param name="opciones" value="#{formController.formOptions}" />
+					<div style="top: 75px; left: 50px;">
+					<OBJECT ID="oracleform"
+						classid="clsid:CAFECAFE-0013-0001-0022-ABCDEFABCDEF"
+						codebase="http://#{opciones.formsWebServer}/forms/jinitiator/jinit.exe#Version=1,3,1,22"
+						WIDTH="923" HEIGHT="643" HSPACE="75" VSPACE="0">
+						<PARAM name="archive" value="frmall_jinit.jar"/>
+						<PARAM name="type"
+							value="application/x-jinit-applet;version=1.3.1.22"/>
+						<PARAM name="codebase" value="http://#{opciones.formsWebServer}/forms/java"/>
+						<PARAM name="code" value="oracle.forms.engine.Main"/>
+						<PARAM NAME="serverURL"
+							VALUE="http://#{opciones.formsWebServer}/forms/lservlet/?ifcfs=http://#{opciones.formsWebServer}/forms/frmservlet?form=#{opciones.nombreForm}&amp;userid=#{opciones.usuarioLogado}&amp;oracle_sid=#{opciones.formsSid}"/>
+						<PARAM NAME="networkRetries" VALUE="0"/>
+						<PARAM name="serverArgs"
+							value="escapeParams=true module=#{opciones.nombreForm} oracle_sid=#{opciones.formsSid} aplicacion=#{opciones.urlVuelta}/ usuario=#{opciones.usuarioLogado} sesion=#{opciones.hashSesion} nsesion=#{opciones.sesion} cod_aplicacion=#{opciones.codigoAplicacion} useSDI=yes "/>
+						<PARAM name="splashScreen" value=""/>
+						<PARAM name="background" value="false"/>
+						<PARAM name="lookAndFeel" value="Generic"/>
+						<PARAM name="colorScheme" value="teal"/>
+						<PARAM name="serverApp" value="Registry"/>
+						<PARAM name="proxyHost" value="#{opciones.proxyHost}"/>
+						<PARAM name="proxyPort" value="#{opciones.proxyPort}"/>
+						<PARAM name="separateFrame" value="false"/>
+						<PARAM name="logo" value=""/>
+						<PARAM NAME="imageBase" VALUE="codebase"/>
+						<PARAM NAME="formsMessageListener" VALUE=""/>
+						<PARAM NAME="recordFileName" VALUE=""/>
+						<PARAM NAME="EndUserMonitoringEnabled" VALUE=""/>
+						<PARAM NAME="EndUserMonitoringURL" VALUE=""/>
+						<PARAM NAME="heartbeat" VALUE=""/>
+						<COMMENT> <EMBED SRC=""
+							PLUGINSPAGE="http://#{opciones.formsWebServer}/forms/jinitiator/us/jinit_download.htm"
+							TYPE="application/x-jinit-applet;version=1.3.1.22"
+							java_codebase="http://#{opciones.formsWebServer}/forms/java"
+							java_code="oracle.forms.engine.Main"
+							java_archive="frmall_jinit.jar" WIDTH="923" HEIGHT="643"
+							HSPACE="75" VSPACE="0"
+							serverURL="http://#{opciones.formsWebServer}/forms/lservlet/?ifcfs=http://#{opciones.formsWebServer}/forms/frmservlet?form=#{opciones.nombreForm}&amp;userid=#{opciones.usuarioLogado}&amp;oracle_sid=#{opciones.formsSid}"
+							networkRetries="0"
+							serverArgs="escapeParams=true module=#{opciones.nombreForm} oracle_sid=#{opciones.formsSid} aplicacion=#{opciones.urlVuelta}/ usuario=#{opciones.usuarioLogado} sesion=#{opciones.hashSesion} nsesion=#{opciones.sesion} cod_aplicacion=#{opciones.codigoAplicacion} useSDI=yes ">
+							separateFrame="false" splashScreen="" background="false"
+							lookAndFeel="Generic" colorScheme="teal" serverApp="Registry"
+							proxyHost="#{opciones.proxyHost}" proxyPort="#{opciones.proxyPort}" logo=""
+							imageBase="codebase" formsMessageListener="" recordFileName=""
+							EndUserMonitoringEnabled="" EndUserMonitoringURL="" heartBeat="">
+						</EMBED></COMMENT>
+<!-- 						</NOEMBED> -->
+<!-- 						</EMBED> -->
+					</OBJECT>
+				</div>
+
+				</h:form>
+			</b:column>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+	<util:map id="sqlQueries">
+
+		<entry key="buscarOpcionesMenuByCodigoAppAndRoles">
+			<value><![CDATA[
+			
+			SELECT DISTINCT opciones.cod_opcion ID, opciones.des_opcion descripcion,
+			       opciones.cod_opcion_padre idpadre, opciones.orden_opcion orden,
+			       opciones.url_opcion url, opciones.tipo_opcion tipo
+			  FROM acceso.ca_opciones opciones, acceso.ca_opciones_roles opciones_roles, acceso.ca_roles roles
+			 WHERE opciones.cod_opcion = opciones_roles.cod_opcion
+			   AND opciones.cod_aplicacion = opciones_roles.cod_aplicacion
+			   and roles.cod_aplicacion = opciones_roles.cod_aplicacion
+			   and roles.cod_rol = opciones_roles.cod_rol
+			   and UPPER(roles.DES_ROL) in (:roles)
+			   and opciones.cod_aplicacion= :codigoApp
+			   ORDER BY idpadre asc nulls first, orden
+		]]></value>
+		</entry>
+		<entry key="procesos.buscarByLogin">
+			<value><![CDATA[
+			SELECT proceso.cod_proceso ID, proceso.des_proceso descripcion, proceso.login,
+       proceso.fecha_lanzamiento fechalanzamiento, proceso.fecha_ejecucion fechaejecucion,
+      proceso.fecha_fin fechafin, proceso.fin_error error, proceso.des_error descripcionerror,
+      proceso.report nombrereport, proceso.cod_transferencia idfichero,
+       tipo.COD_TIPO_PROCESO idTipo, tipo.DES_TIPO_PROCESO tipoDescripcion, tipo.tipo tipoReport  , fichero.des_fichero nombreFicheroBd     
+	  FROM acceso.ca_procesos proceso LEFT JOIN acceso.ca_ficheros fichero ON proceso.cod_transferencia = fichero.cod_transferencia, acceso.ca_tipos_proceso  tipo 
+	  where proceso.cod_tipo_proceso = tipo.COD_TIPO_PROCESO and proceso.login = :login
+	  order by proceso.fecha_lanzamiento desc, proceso.fecha_ejecucion desc
+		]]></value>
+		</entry>
+		<entry key="procesos.buscarByTipoAndCodigoApp">
+			<value><![CDATA[
+			SELECT proceso.cod_proceso ID, proceso.des_proceso descripcion, proceso.login,
+       proceso.fecha_lanzamiento fechalanzamiento, proceso.fecha_ejecucion fechaejecucion,
+      proceso.fecha_fin fechafin, proceso.fin_error error, proceso.des_error descripcionerror,
+      proceso.report nombrereport, proceso.cod_transferencia idfichero,
+       tipo.COD_TIPO_PROCESO idTipo, tipo.DES_TIPO_PROCESO tipoDescripcion, tipo.tipo tipoReport  , fichero.des_fichero nombreFicheroBd     
+	  FROM acceso.ca_procesos proceso LEFT JOIN acceso.ca_ficheros fichero ON proceso.cod_transferencia = fichero.cod_transferencia, acceso.ca_tipos_proceso  tipo 
+	  where proceso.cod_tipo_proceso = tipo.COD_TIPO_PROCESO and tipo.COD_TIPO_PROCESO = :id and tipo.cod_aplicacion = :codApp
+	  order by proceso.fecha_lanzamiento desc, proceso.fecha_ejecucion desc
+		]]></value>
+		</entry>
+		<entry key="procesos.eliminarById">
+			<value><![CDATA[
+			delete from acceso.ca_procesos where cod_proceso = :id 
+		]]></value>
+		</entry>
+		<entry key="ficheros.buscarById">
+			<value><![CDATA[
+			select fichero.des_fichero nombre, fichero.tipo_mime mime, fichero.fichero contenido 
+			from acceso.ca_ficheros fichero 
+			where cod_transferencia = :id
+		]]></value>
+		</entry>
+		<entry key="ficheros.eliminarById">
+			<value><![CDATA[
+			delete from acceso.ca_ficheros where cod_transferencia = :id
+		]]></value>
+		</entry>
+		<entry key="tipoProceso.buscarByCodApp">
+			<value><![CDATA[
+			select p.cod_tipo_proceso id, p.DES_TIPO_PROCESO descripcion, p.tipo tipoReport 
+			from acceso.ca_tipos_proceso p 
+			where p.cod_aplicacion = :codApp  
+		]]></value>
+		</entry>
+	</util:map>
+
+</beans>
